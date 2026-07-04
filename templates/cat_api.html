@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cat API</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/cat_api.css') }}">
+
+</head>
+
+<body>
+
+<h1>🐱 Cat API Gallery</h1>
+
+{% if error %}
+
+<div class="error">
+
+{{ error }}
+
+</div>
+
+{% endif %}
+
+<div class="container">
+
+{% for cat in cats %}
+
+<div class="card">
+
+<img src="{{ cat.image }}" alt="Cat Image">
+
+<div class="content">
+
+<h2>Cat ID</h2>
+
+<p>{{ cat.id }}</p>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+
+</html>

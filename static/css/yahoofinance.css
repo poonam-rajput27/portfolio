@@ -1,0 +1,144 @@
+/* Core Layout Settings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #1d2124;
+}
+
+/* Header Navbar Styles */
+.dashboard-header {
+    background-color: #131722;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-area h2 {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.status-indicator {
+    font-size: 13px;
+    color: #b2b5be;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #2962ff;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #2962ff;
+}
+
+/* Dashboard Wrapper Grid */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #131722;
+}
+
+/* Error Banner Box */
+.error-banner {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    padding: 12px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Clean Financial Data Table Layout */
+.table-wrapper {
+    background: #ffffff;
+    border: 1px solid #e0e3eb;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.finance-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.finance-table th {
+    background-color: #f0f3fa;
+    color: #606266;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 14px 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e0e3eb;
+}
+
+.finance-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f3fa;
+    font-size: 15px;
+}
+
+/* Table Row Hover Dynamic Interaction */
+.finance-table tbody tr:hover {
+    background-color: #f8f9fc;
+    cursor: pointer;
+}
+
+/* Typography Data Columns Variant */
+.stock-symbol {
+    font-weight: 700;
+    color: #2962ff;
+}
+
+.stock-name {
+    color: #4c525e;
+}
+
+.stock-price {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Financial Green/Red Market Indicators */
+.stock-change {
+    font-weight: 600;
+    border-radius: 4px;
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 14px;
+    margin-top: 12px; /* aligns baseline */
+}
+
+.stock-change.positive {
+    color: #089981;
+    background-color: #e6f4f1;
+}
+
+.stock-change.negative {
+    color: #f23645;
+    background-color: #fcebeb;
+}

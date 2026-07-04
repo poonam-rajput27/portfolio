@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMDb Top Charts Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='imdb.css') }}">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <h2>IMDb <span>TOP CHARTS</span></h2> 
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/" class="back-btn">← Back to Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">IMDb Top Movies</h1>
+            <p class="subtitle">Dynamically scraped live top-rated movie charts</p>
+        </div>
+
+        {% if error %}
+        <div class="error-banner">
+            <p><strong>Error fetching data:</strong> {{ error }}</p>
+        </div>
+        {% endif %}
+
+        <div class="movie-grid">
+            {% for movie in movies %}
+            <div class="movie-card">
+                <div class="rank-badge">#{{ movie.rank }}</div>
+                <div class="movie-info">
+                    <h3 class="movie-title">{{ movie.title }}</h3>
+                    
+                    <div class="metadata-row">
+                        <span class="meta-item">{{ movie.year }}</span>
+                        <span class="meta-divider">•</span>
+                        <span class="meta-item">{{ movie.duration }}</span>
+                    </div>
+
+                    <div class="rating-box">
+                        <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                        </svg>
+                        <span class="rating-value">{{ movie.rating }}</span>
+                        <span class="rating-max">/10</span>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                {% if not error %}
+                <div class="no-data">
+                    <p>No movies found. Make sure your scraper is executing correctly.</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Demographics Scraper Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #064e3b; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #059669; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        .error-card { text-align: center; padding: 40px; color: #666; }
+    </style>
+</head>
+<body>
+
+    <header style="text-align: center; margin-bottom: 20px; color: white;">
+        <h1>🌍 Global Metric Records</h1>
+        <p style="opacity: 0.9;">Static Web Scraping using Python + BeautifulSoup</p>
+    </header>
+
+    <div class="container">
+        {% if countries %}
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Country Name</th>
+                    <th>Capital City</th>
+                    <th>Total Population</th>
+                    <th>Surface Area (sq km)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for country in countries %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ country.name }}</td>
+                    <td>{{ country.capital }}</td>
+                    <td style="color: #059669; font-weight: bold;">{{ country.population }}</td>
+                    <td>{{ country.area }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <div class="error-card">
+                <p>No demographic statistics pulled down. Check network drivers.</p>
+            </div>
+        {% endif %}
+        <br>
+        <div style="text-align: center;">
+            <a href="{{ url_for('scraping_static') }}" style="color: #064e3b; text-decoration: none; font-weight: bold;">← Return to Projects Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

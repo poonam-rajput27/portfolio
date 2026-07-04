@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia, the free encyclopedia</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wikipedia.css') }}">
+</head>
+<body>
+
+    <header class="wiki-header">
+        <div class="logo-area" onclick="loadPage('Wikipedia')">
+            <span class="logo-globe">🌐</span>
+            <span class="logo-text">
+                WIKIPEDIA<br>
+                <small>The Free Encyclopedia</small>
+            </span>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search Wikipedia" onkeyup="handleSearch(event)">
+            <button onclick="triggerSearch()">Search</button>
+            <div id="suggestions" class="suggestions-box"></div>
+        </div>
+    </header>
+
+    <main class="wiki-container">
+        
+        <aside class="wiki-sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="loadPage('Wikipedia')">Main page</a></li>
+                    <li><a href="#" onclick="loadPage('Technology')">Technology</a></li>
+                    <li><hr></li>
+                    <li class="nav-heading">Contribute</li>
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">About Wikipedia</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <article class="wiki-content">
+            <h1 id="article-title">Wikipedia Portal</h1>
+            <hr class="title-divider">
+            
+            <div id="article-body">
+                Welcome to this Wikipedia clone! Search for a term using the search bar above or click one of the navigation links to explore live data.
+            </div>
+
+            {% if products %}
+            <div class="scraped-results-container" style="margin-top: 40px; border-top: 1px solid #a2a9b1; padding-top: 25px;">
+                <h2 style="font-family: Georgia, serif; font-size: 1.3rem; margin-bottom: 15px; color: #54595d;">📋 Live Scraper Pipeline (Top 5 Results):</h2>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    {% for article in products %}
+                    <div style="background: #ffffff; border: 1px solid #cbd5e1; padding: 15px; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                        <h3 style="color: #3366cc; margin-bottom: 5px; font-size: 1.15rem;">{{ article.title }}</h3>
+                        <p style="font-size: 13px; color: #54595d; margin-bottom: 8px;">
+                            <strong>Words:</strong> {{ article.word_count }} | <strong>Page ID:</strong> {{ article.page_id }}
+                        </p>
+                        <a href="{{ article.link }}" target="_blank" style="font-size: 13px; color: #0645ad; font-weight: 500; text-decoration: underline;">View Article Source ↗</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% elif error %}
+            <div style="margin-top: 30px; background-color: #fff8f8; border-left: 4px solid #d33; padding: 15px; border-radius: 4px;">
+                <h3 style="color: #b30000; margin-bottom: 5px;">⚠️ Scraper Engine Notice</h3>
+                <p style="font-size: 14px; color: #54595d;">{{ error }}. Please verify that a genuine User-Agent header is set in your python request script.</p>
+            </div>
+            {% endif %}
+        </article>
+
+    </main>
+
+    <script>
+        // Core Routine: Fetch an article payload from your Python server and draw it on screen
+        async function loadPage(title) {
+            if (!title) return;
+            
+            try {
+                // Clear any lingering suggestion drop-downs first
+                document.getElementById('suggestions').style.display = 'none';
+                
+                const response = await fetch(`/api/wiki/${encodeURIComponent(title)}`);
+                
+                // Safety check for backend status code problems
+                if (!response.ok) {
+                    throw new Error(`HTTP Error Status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Process and render out structural data safely
+                document.getElementById('article-title').innerText = data.title || "No Title Available";
+                document.getElementById('article-body').innerText = data.summary || "No contents could be retrieved for this entry.";
+            } catch (error) {
+                console.error("Failed to safely request standard page payload:", error);
+                document.getElementById('article-title').innerText = "Dashboard Active";
+                document.getElementById('article-body').innerText = `Viewing search results context parameters for "${title}". Click any mapped list items below to inspect specific parsed indexes.`;
+            }
+        }
+
+        // Live Auto-Suggestion Dropdown Handler
+        async function handleSearch(event) {
+            const query = event.target.value.trim();
+            
+            // If user explicitly presses 'Enter', instantly kick off a normal fetch cycle
+            if (event.key === 'Enter') {
+                triggerSearch();
+                return;
+            }
+
+            // Don't overwhelm the backend for incredibly short queries
+            if (query.length < 2) {
+                document.getElementById('suggestions').style.display = 'none';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+                if (!response.ok) return;
+                
+                const results = await response.json();
+                
+                const suggestionsBox = document.getElementById('suggestions');
+                suggestionsBox.innerHTML = '';
+
+                if (results && results.length > 0) {
+                    results.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'suggestion-item';
+                        div.innerText = item;
+                        // Click logic: Update input value and load page instantly
+                        div.onclick = () => {
+                            document.getElementById('search-input').value = item;
+                            loadPage(item);
+                        };
+                        suggestionsBox.appendChild(div);
+                    });
+                    suggestionsBox.style.display = 'block';
+                } else {
+                    suggestionsBox.style.display = 'none';
+                }
+            } catch (e) {
+                console.error("Live suggestions fetching failed: ", e);
+            }
+        }
+
+        // Search Button Event Trigger
+        function triggerSearch() {
+            const query = document.getElementById('search-input').value.trim();
+            if (query) {
+                loadPage(query);
+            }
+        }
+
+        // Default initialization entry-point
+        window.onload = () => {
+            loadPage('wikipedia');
+        };
+    </script>
+</body>
+</html>

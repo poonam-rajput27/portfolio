@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Poonam Rajput</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        Poonam Rajput
+    </div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/learnMore">Learn More</a>
+        <a href="/scraping">Projects</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h3>Hello, I'm</h3>
+        <h1>Poonam Rajput</h1>
+        <h2>Python Developer | AI Enthusiast | Web Developer</h2>
+        <p>
+            I am a Computer Science Engineering student passionate about Artificial
+            Intelligence, Machine Learning, Python Programming, Flask Development,
+            and creating modern web applications.
+        </p>
+        <a href="/learnMore" class="btn">Know More</a>
+    </div>
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='image/profile.png') }}" alt="Profile">
+    </div>
+</section>
+
+<section>
+    <h2 class="title">About Me</h2>
+    <div class="cards">
+        <div class="card">
+            <i class='bx bx-user'></i>
+            <h3>Who Am I?</h3>
+            <p>
+                I am a motivated Computer Science student with strong problem-solving
+                skills and a passion for developing intelligent software solutions.
+            </p>
+        </div>
+        <div class="card">
+            <i class='bx bx-book'></i>
+            <h3>Education</h3>
+            <p>
+                Bachelor of Technology (B.Tech)<br>
+                Computer Science Engineering
+            </p>
+        </div>
+        <div class="card">
+            <i class='bx bx-target-lock'></i>
+            <h3>Career Goal</h3>
+            <p>
+                To become an AI Engineer and Full Stack Developer while building
+                innovative applications that solve real-world problems.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="title">Technical Skills</h2>
+    <div class="cards">
+        <div class="card"><i class='bx bxl-python'></i><h3>Python</h3></div>
+        <div class="card"><i class='bx bxl-html5'></i><h3>HTML5</h3></div>
+        <div class="card"><i class='bx bxl-css3'></i><h3>CSS3</h3></div>
+        <div class="card"><i class='bx bxl-javascript'></i><h3>JavaScript</h3></div>
+        <div class="card"><i class='bx bx-data'></i><h3>SQL</h3></div>
+        <div class="card"><i class='bx bx-code'></i><h3>Flask</h3></div>
+        <div class="card"><i class='bx bx-brain'></i><h3>Machine Learning</h3></div>
+        <div class="card"><i class='bx bxl-git'></i><h3>Git & GitHub</h3></div>
+    </div>
+</section>
+
+<section>
+    <h2 class="title">My Projects</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Scraping</h3>
+            <p>
+                A Python-based web scraping project that extracts product details,
+                ratings, and prices from Amazon.
+            </p>
+            <a href="/scraping" class="btn">View Project</a>
+        </div>
+
+        <div class="card">
+            <h3>AI Interviewer</h3>
+            <p>
+                An Artificial Intelligence-based Interview System that analyzes candidate
+                responses and provides interview insights.
+            </p>
+            <a href="#" class="btn">View Project</a>
+        </div>
+
+        <div class="card">
+            <h3>Synthetic Data Generator</h3>
+            <p>
+                A Flask-based application for generating synthetic datasets and storing
+                them securely in databases.
+            </p>
+            <a href="#" class="btn">View Project</a>
+        </div>
+
+        <div class="card">
+            <h3>Responsive Static Website</h3>
+            <p>
+                Designed and developed a responsive frontend website using HTML, CSS,
+                and JavaScript.
+            </p>
+            <a href="/static" class="btn">View Project</a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="title">Certificates</h2>
+    <div class="cards">
+        <div class="card">
+            <i class='bx bx-award'></i>
+            <h3>Python Programming</h3>
+            <p>Successfully completed Python Programming Certification.</p>
+        </div>
+        <div class="card">
+            <i class='bx bx-medal'></i>
+            <h3>Web Development</h3>
+            <p>Completed HTML, CSS & JavaScript Development Training.</p>
+        </div>
+        <div class="card">
+            <i class='bx bx-certification'></i>
+            <h3>Machine Learning</h3>
+            <p>Completed introductory Machine Learning certification.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="title">Contact</h2>
+    <div class="cards">
+        <div class="card">
+            <i class='bx bxl-linkedin-square'></i>
+            <h3>LinkedIn</h3>
+            <p>Connect professionally.</p>
+        </div>
+        <div class="card">
+            <i class='bx bxl-github'></i>
+            <h3>GitHub</h3>
+            <p>Explore my coding projects.</p>
+        </div>
+        <div class="card">
+            <i class='bx bx-envelope'></i>
+            <h3>Email</h3>
+            <p>Feel free to contact me anytime.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h3>Poonam Rajput</h3>
+    <p>Python Developer • AI Enthusiast • Web Developer</p>
+    <p>© 2026 Poonam Rajput | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

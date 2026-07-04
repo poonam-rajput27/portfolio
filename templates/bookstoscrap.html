@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books to Scrape Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bookstoscrap.css') }}">
+</head>
+<body>
+
+    <header style="text-align: center; margin-bottom: 20px; color: white; font-family: Arial, sans-serif;">
+        <h1>📚 Books Collection Dashboard</h1>
+        <p style="opacity: 0.9;">Static Web Scraping Sandbox using Python + BeautifulSoup</p>
+    </header>
+
+    <div class="container">
+        {% if books %}
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th style="text-align: left; padding-left: 20px;">Book Title</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td style="text-align: left; padding-left: 20px;">{{ book.Title }}</td>
+                    <td style="color: #10b981; font-weight: bold;">{{ book.Price }}</td>
+                    <td>⭐ {{ book.Rating }}</td>
+                    <td style="font-size: 14px; color: #64748b;">{{ book.Availability }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <div style="text-align: center; padding: 40px; color: #666; font-family: Arial, sans-serif;">
+                <p>No book records fetched. Please double-check your connection or scraper script logic.</p>
+            </div>
+        {% endif %}
+        <br>
+        <div style="text-align: center;">
+            <a href="{{ url_for('scraping_static') }}" style="color: #3b82f6; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif;">← Return to Projects Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

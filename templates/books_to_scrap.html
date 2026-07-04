@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books Showcase Scraper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/books_to_scrape.css') }}">
+</head>
+<body>
+
+    <header class="page-header">
+        <h1>📚 Books Showcase Records</h1>
+        <p>Static Catalog Scraping using Python + BeautifulSoup</p>
+    </header>
+
+    <div class="container">
+        {% if books %}
+        <div class="books-grid">
+            {% for book in books %}
+            <div class="book-card">
+                <div class="book-info">
+                    <h3 class="book-title" title="{{ book.title }}">{{ book.title }}</h3>
+                    
+                    <div class="rating">
+                        {% if book.rating > 0 %}
+                            {% for i in range(book.rating) %}⭐{% endfor %}
+                        {% else %}
+                            <span>No Rating</span>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="card-footer">
+                        <span class="price">{{ book.price }}</span>
+                        <span class="status {% if 'In stock' in book.availability %}instock{% else %}outstock{% endif %}">
+                            {{ book.availability }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="error-card">
+                <p>No book statistics pulled down. Check network connection or target domain availability.</p>
+            </div>
+        {% endif %}
+        
+        <div class="back-dashboard">
+            <a href="{{ url_for('scraping_static') }}">← Return to Projects Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Scraping Dashboards</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/apiscraping.css') }}">
+</head>
+<body>
+
+    <header class="dashboard-header">
+        <h1 class="title">🌐 API Scraping Projects</h1>
+        <p class="subtitle">A curated collection of parsed dynamic content engines and interface datasets.</p>
+    </header>
+
+    <main class="container">
+        <div class="cards-grid">
+
+            <div class="card card-meal">
+                <div class="card-badge">Food API</div>
+                <div class="card-icon">🍽️</div>
+                <h2>The Meal DB</h2>
+                <p>Fetch delicious recipe frameworks, ingredients, and culinary preparation metadata via public APIs.</p>
+                <div class="buttons">
+                    <a href="/mealdb" class="btn btn-primary">View Details</a>
+                    <a href="https://www.themealdb.com/" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+            <div class="card card-wiki">
+                <div class="card-badge">Data API</div>
+                <div class="card-icon">📚</div>
+                <h2>Wikipedia Engine</h2>
+                <p>Query live encyclopedia endpoints to harvest summaries, metadata metrics, and search strings.</p>
+                <div class="buttons">
+                    <a href="/wikipedia" class="btn btn-primary">View Details</a>
+                    <a href="https://en.wikipedia.org/w/api.php" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+            <div class="card card-fakestore">
+                <div class="card-badge">E-Commerce</div>
+                <div class="card-icon">🛍️</div>
+                <h2>Fake Store API</h2>
+                <p>Pipeline store inventory, including clothing items, accessories, ratings, and pricing schemas.</p>
+                <div class="buttons">
+                    <a href="/fakestore" class="btn btn-primary">View Details</a>
+                    <a href="https://fakestoreapi.com/" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+            <div class="card card-dummyjson">
+                <div class="card-badge">Products Data</div>
+                <div class="card-icon">⚙️</div>
+                <h2>json_placeholder </h2>
+                <p>Ingest robust product categories, user mock data, and system catalogs for application tests.</p>
+                <div class="buttons">
+                    <a href="/json_placeholder" class="btn btn-primary">View Details</a>
+                    <a href="https://dummyjson.com/" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+            <div class="card card-cat">
+                <div class="card-badge">Media API</div>
+                <div class="card-icon">🐱</div>
+                <h2>The Cat API</h2>
+                <p>Stream random image elements, breed profile metrics, and structural categorization data rules.</p>
+                <div class="buttons">
+                    <a href="/catapi" class="btn btn-primary">View Details</a>
+                    <a href="https://thecatapi.com/" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Poonam Rajput | Portfolio</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        Poonam Rajput
+    </div>
+
+    <nav>
+
+        <a href="/">Home</a>
+
+        <a href="/portfolio">Portfolio</a>
+
+        <a href="/learnMore">Learn More</a>
+
+        <a href="/scraping">Projects</a>
+
+    </nav>
+
+</header>
+
+<!-- HERO SECTION -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h3>Hello, I'm</h3>
+
+        <h1>Poonam Rajput</h1>
+
+        <h2>B.Tech CSE Student | Python Developer | AI Enthusiast</h2>
+
+        <p>
+
+            Welcome to my personal portfolio.
+
+            I am passionate about Python Development, Artificial Intelligence,
+            Machine Learning, Web Development, and solving real-world problems
+            through technology.
+
+            Explore my projects and learn more about my journey.
+
+        </p>
+
+        <div class="buttons">
+
+            <a href="/portfolio" class="btn">
+                View Portfolio
+            </a>
+
+            <a href="/learnMore" class="btn">
+                Learn More
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-image">
+
+        <!-- Place your image in static/image/profile.png -->
+        <img src="{{ url_for('static', filename='image/profile.png') }}" alt="Poonam Rajput">
+
+    </div>
+
+</section>
+
+<!-- SERVICES -->
+
+<section>
+
+<h2 class="title">What I Do</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<i class='bx bx-code-alt'></i>
+
+<h3>Web Development</h3>
+
+<p>
+
+Designing modern, responsive websites using HTML, CSS, JavaScript, Flask, and Python.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class='bx bx-brain'></i>
+
+<h3>Artificial Intelligence</h3>
+
+<p>
+
+Developing AI-powered applications and Machine Learning projects.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class='bx bx-data'></i>
+
+<h3>Database Management</h3>
+
+<p>
+
+Working with SQL databases and efficient data storage solutions.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section>
+
+<h2 class="title">Technical Skills</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🐍 Python</h3>
+</div>
+
+<div class="card">
+<h3>🌐 HTML5</h3>
+</div>
+
+<div class="card">
+<h3>🎨 CSS3</h3>
+</div>
+
+<div class="card">
+<h3>⚡ JavaScript</h3>
+</div>
+
+<div class="card">
+<h3>🗄 SQL</h3>
+</div>
+
+<div class="card">
+<h3>🚀 Flask</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURED PROJECTS -->
+
+<section>
+
+<h2 class="title">Featured Projects</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Amazon Web Scraper</h3>
+
+<p>
+
+Python project that extracts product details from Amazon using BeautifulSoup.
+
+</p>
+
+<a href="/scraping" class="btn">View Project</a>
+
+</div>
+
+<div class="card">
+
+<h3>AI Interviewer</h3>
+
+<p>
+
+AI-based interview system for evaluating candidate performance.
+
+</p>
+
+<a href="/portfolio" class="btn">View Project</a>
+
+</div>
+
+<div class="card">
+
+<h3>Synthetic Data Generator</h3>
+
+<p>
+
+Minor project for generating synthetic datasets and storing them securely.
+
+</p>
+
+<a href="/portfolio" class="btn">View Project</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section>
+
+<h2 class="title">Let's Connect</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<i class='bx bxl-linkedin'></i>
+
+<h3>LinkedIn</h3>
+
+</div>
+
+<div class="card">
+
+<i class='bx bxl-github'></i>
+
+<h3>GitHub</h3>
+
+</div>
+
+<div class="card">
+
+<i class='bx bx-envelope'></i>
+
+<h3>Email</h3>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<h3>Poonam Rajput</h3>
+
+<p>
+
+Python Developer | AI Enthusiast | Web Developer
+
+</p>
+
+<p>
+
+© 2026 Poonam Rajput. All Rights Reserved.
+
+</p>
+
+</footer>
+
+</body>
+
+</html>

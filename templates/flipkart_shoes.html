@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Shoes Scraper Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flipkart_shoes.css') }}">
+</head>
+<body>
+
+    <header style="text-align: center; margin-bottom: 20px; color: white;">
+        <h1>👟 Flipkart Shoes Collection</h1>
+        <p style="opacity: 0.9;">Static Web Scraping using Python + BeautifulSoup</p>
+    </header>
+
+    <div class="container">
+        {% if shoes %}
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Shoe Model & Brand Name</th>
+                    <th>Price (INR)</th>
+                    <th>Available Sizes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for shoe in shoes %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ shoe.shoe_name }}</td>
+                    <td style="color: #2563eb; font-weight: 600;">₹{{ shoe.price }}</td>
+                    <td><span class="size-badge">{{ shoe.Size }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <div style="text-align: center; padding: 40px; color: #666;">
+                <p>No product matrices found. Infrastructure verification needed.</p>
+            </div>
+        {% endif %}
+        <br>
+        <div style="text-align: center;">
+            <a href="{{ url_for('scraping_static') }}" style="color: #2563eb; text-decoration: none; font-weight: bold;">← Return to Projects Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

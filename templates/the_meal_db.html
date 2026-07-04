@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>The Meal DB</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/the_meal_db.css') }}">
+
+</head>
+
+<body>
+
+<h1>🍽️ Random Meal Recipe</h1>
+
+{% if error %}
+
+<p class="error">{{ error }}</p>
+
+{% endif %}
+
+<div class="container">
+
+{% for recipe in recipes %}
+
+<div class="card">
+
+<img src="{{ recipe.image }}" alt="Meal">
+
+<h2>{{ recipe.name }}</h2>
+
+<p><b>Category:</b> {{ recipe.category }}</p>
+
+<p><b>Country:</b> {{ recipe.area }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+
+</html>

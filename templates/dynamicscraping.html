@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Web Scraper Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dynamicscraping.css') }}">
+</head>
+<body>
+
+    <header class="dashboard-header">
+        <h1 class="title">🌐 Web Scraping Projects</h1>
+        <p class="subtitle">A curated collection of active dynamic content engines, data parsers, and automation scripts.</p>
+    </header>
+
+    <main class="container">
+        <div class="cards-grid">
+
+            <div class="card card-quotes">
+                <div class="card-badge">JavaScript Dynamic</div>
+                <div class="card-icon">💬</div>
+                <h2>Quotes to Scrape</h2>
+                <p>Extract paginated JSON-rendered components containing author metadata, historical quotes, and tags.</p>
+                <div class="buttons">
+                    <a href="/quotes" class="btn btn-primary">View Details</a>
+                    <a href="https://quotes.toscrape.com/js/" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+            <div class="card card-imdb">
+                <div class="card-badge">Media & Ratings</div>
+                <div class="card-icon">🎬</div>
+                <h2>IMDb Engine</h2>
+                <p>Query entertainment endpoints to parse real-time chart rankings, trending content metrics, and user scores.</p>
+                <div class="buttons">
+                    <a href="/imdb" class="btn btn-primary">View Details</a>
+                    <a href="https://www.imdb.com/chart/top/" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+            <div class="card card-nike">
+                <div class="card-badge">E-Commerce</div>
+                <div class="card-icon">👟</div>
+                <h2>Nike Store Scraper</h2>
+                <p>Pipeline complex retail inventories, tracking dynamically rendered retail categories, sizes, and pricing nodes.</p>
+                <div class="buttons">
+                    <a href="/nike-scraping" class="btn btn-primary">View Details</a>
+                    <a href="https://www.nike.com/" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+            <div class="card card-yahoo">
+                <div class="card-badge">Market Data</div>
+                <div class="card-icon">📊</div>
+                <h2>Yahoo Finance</h2>
+                <p>Ingest responsive financial tickers, tables, and stock transaction streams for analytical tracking.</p>
+                <div class="buttons">
+                    <a href="/yahoofinance" class="btn btn-primary">View Details</a>
+                    <a href="https://finance.yahoo.com/trending-tickers" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+            <div class="card card-indeed">
+                <div class="card-badge">Job Boards</div>
+                <div class="card-icon">💼</div>
+                <h2>Indeed Parser</h2>
+                <p>Harvest structural professional job listings, corporate salary schemas, and metadata across regions.</p>
+                <div class="buttons">
+                    <a href="/indeed" class="btn btn-primary">View Details</a>
+                    <a href="https://www.indeed.com/" target="_blank" class="btn btn-secondary">Website</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

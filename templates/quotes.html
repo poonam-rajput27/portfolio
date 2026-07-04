@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraped Quotes Dataset</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quotes_to_scrap.css') }}">
+    <style>
+        /* Specific Fallback Styles for Quotes Component Output Layout */
+        .quote-box {
+            background: #ffffff;
+            border-left: 5px solid #06b6d4; /* Cyan border matching dashboard grid theme */
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px 12px 12px 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .quote-text {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #0f172a;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        .quote-author {
+            font-weight: 700;
+            color: #475569;
+            text-align: right;
+            margin-bottom: 12px;
+        }
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .quote-tag {
+            background: #ecfeff;
+            color: #0891b2;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #cffafe;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-decoration: none;
+            background: #0f172a;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .back-btn:hover {
+            background: #1e293b;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="dashboard-header">
+        <h1 class="title">💬 Quotes Scraper Output</h1>
+        <p class="subtitle">Live data parsed dynamically via automated headless Selenium worker pipelines.</p>
+    </header>
+
+    <main class="container">
+        <a href="/" class="back-btn">← Back to Dashboard</a>
+
+        <div class="quotes-list-wrapper">
+            
+            {% if quotes %}
+                {% for item in quotes %}
+                    <div class="quote-box">
+                        <p class="quote-text">“{{ item.quote }}”</p>
+                        <div class="quote-author">— {{ item.author }}</div>
+                        <div class="tag-container">
+                            {% for tag in item.tags %}
+                                <span class="quote-tag">#{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="quote-box" style="text-align: center; padding: 40px;">
+                    <p style="color: #64748b;">No quotes scraped yet. Please wait a moment or verify your internet connection.</p>
+                    {% if error %}
+                        <p style="color: #ef4444; font-size: 0.9rem; margin-top: 10px;"><strong>Error details:</strong> {{ error }}</p>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+        </div>
+    </main>
+
+</body>
+</html>

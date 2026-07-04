@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Laptop Scraper Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/amazon_laptops.css') }}">
+</head>
+<body>
+
+    <header style="text-align: center; margin-bottom: 20px; color: white; font-family: Arial, sans-serif;">
+        <h1>💻 Amazon Laptop Collection</h1>
+        <p style="opacity: 0.9;">Static Web Scraping using Python + BeautifulSoup</p>
+    </header>
+
+    <div class="container">
+        {% if laptops %}
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Laptop Details</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for laptop in laptops %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td style="text-align: left;">{{ laptop.Title }}</td>
+                    <td style="color: #2563eb; font-weight: bold;">₹{{ laptop.Price }}</td>
+                    <td>⭐ {{ laptop.Rating }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <div style="text-align: center; padding: 40px; color: #666; font-family: Arial, sans-serif;">
+                <p>No product records fetched. Amazon may be throttling requests. Refresh or check back shortly.</p>
+            </div>
+        {% endif %}
+        <br>
+        <div style="text-align: center;">
+            <a href="{{ url_for('scraping_static') }}" style="color: #1e3c72; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif;">← Return to Projects Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

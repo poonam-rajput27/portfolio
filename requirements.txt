@@ -1,0 +1,6 @@
+flask
+numpy
+pandas
+beautifulsoup
+Selenium
+requets

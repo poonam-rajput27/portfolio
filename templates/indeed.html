@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraped Job Openings Dataset</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='indeed.css') }}">
+</head>
+<body>
+
+    <h1>Live Indeed Scraped Jobs Pipeline</h1>
+
+    {% for job in jobs %}
+    <div class="job-card">
+        <h2 class="job-title">“{{ job.title }}”</h2>
+        
+        <div class="meta-container">
+            <span class="meta-tag">#{{ job.company }}</span>
+            <span class="meta-tag">#{{ job.location }}</span>
+            
+            {% if "Disclosed" in job.salary %}
+                <span class="meta-tag fallback-tag">{{ job.salary }}</span>
+            {% else %}
+                <span class="meta-tag salary-tag">{{ job.salary }}</span>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <div class="job-card error-card">
+        <h2 class="job-title">No live listings detected.</h2>
+        <div class="meta-container">
+            <span class="meta-tag fallback-tag">Please verify your connection variables or HTML elements structure mapping.</span>
+        </div>
+    </div>
+    {% endfor %}
+
+</body>
+</html>

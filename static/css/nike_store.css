@@ -1,0 +1,94 @@
+
+/* ==========================================================================
+   Base Page Structure
+   ========================================================================== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f8fafc;
+    padding: 40px;
+    color: #111111;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Dashboard Heading */
+h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #111111;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   Product Card Components
+   ========================================================================== */
+.job-card {
+    background: #ffffff;
+    margin-bottom: 24px;
+    padding: 28px 32px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    
+    /* Nike Heritage Orange left accent bar */
+    border-left: 6px solid #ff5a00; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Interactive hover animation */
+.job-card:hover {
+    transform: translateX(6px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+}
+
+/* Product Name Title formatted as a statement quote */
+.job-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #111111;
+    margin: 0 0 16px 0;
+    font-style: italic;
+}
+
+/* Flexbox grouping for labels spacing */
+.meta-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ==========================================================================
+   Pill Tag Variants
+   ========================================================================== */
+/* Standard product metadata tag (Classification & Category) */
+.meta-tag {
+    background-color: #fff5ed;
+    color: #ff5a00;
+    border: 1px solid #ffddc6;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Highlight tag specialized for Price points */
+.salary-tag {
+    background-color: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+}
+
+/* Neutral fallback tag if data point is missing */
+.fallback-tag {
+    background-color: #f3f4f6; 
+    color: #4b5563; 
+    border-color: #e5e7eb;
+}
+
+/* Error card border override */
+.error-card {
+    border-left-color: #ef4444;
+}
