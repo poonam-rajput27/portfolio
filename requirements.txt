@@ -1,6 +1,6 @@
 flask
 numpy
 pandas
-beautifulsoup
+beautifulsoup4
 Selenium
-requets
+requests
