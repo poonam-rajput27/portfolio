@@ -4,4 +4,6 @@ pandas
 beautifulsoup4
 Selenium
 requests
-gunicorn
+gunicorn 
+webdriver-manager
+selenium
