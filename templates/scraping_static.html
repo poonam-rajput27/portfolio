@@ -4,117 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Static Scraping Projects | Poonam Rajput</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 20px;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            color: #94a3b8;
-            text-decoration: none;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-        .back-link:hover {
-            color: #38bdf8;
-        }
-        .back-link i {
-            margin-right: 5px;
-            font-size: 1.2rem;
-        }
-        .section-title {
-            font-size: 2.5rem;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        .section-subtitle {
-            color: #94a3b8;
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #081b29; color: #ededed; padding: 4rem 10%; }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .back-link { display: inline-flex; align-items: center; color: #ededed; text-decoration: none; margin-bottom: 1.5rem; opacity: 0.8; }
+        .back-link i { margin-right: 5px; font-size: 1.2rem; }
+
+        .section-title { font-size: 2.5rem; color: #ffffff; margin-bottom: 0.5rem; font-weight: 700; }
+        .section-subtitle { color: #b2c4d4; margin-bottom: 3rem; font-size: 1.1rem; }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
+
         .project-card {
-            background: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 16px;
+            background: #112e42;
+            border: 2px solid #00f2fe;
+            border-radius: 15px;
             padding: 2.5rem 2rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+            transition: 0.3s ease;
         }
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: #38bdf8;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-        }
-        .project-icon {
-            font-size: 2.5rem;
-            color: #38bdf8;
-            margin-bottom: 1.25rem;
-        }
-        .project-card h3 {
-            font-size: 1.5rem;
-            color: #ffffff;
-            margin: 0 0 0.75rem 0;
-            font-weight: 600;
-        }
-        .project-card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 0 0 2rem 0;
-            flex-grow: 1;
-        }
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-        }
+
+        .project-icon { font-size: 2.5rem; color: #00f2fe; margin-bottom: 1.25rem; }
+        .project-card h3 { font-size: 1.5rem; color: #00f2fe; margin: 0 0 0.75rem 0; }
+        .project-card p { color: #b2c4d4; font-size: 0.95rem; line-height: 1.6; margin: 0 0 2rem 0; flex-grow: 1; }
+
+        /* Updated to handle 3 buttons */
+        .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .btn-action {
-            flex: 1;
-            text-align: center;
-            padding: 0.6rem 1rem;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: background 0.2s, color 0.2s;
+            flex: 1; min-width: 80px; text-align: center; padding: 0.5rem; text-decoration: none;
+            border-radius: 6px; font-weight: 500; font-size: 0.8rem; transition: 0.3s;
+            border: 2px solid #00f2fe;
         }
-        .btn-primary {
-            background-color: #2563eb;
-            color: #ffffff;
-        }
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-        }
-        .btn-secondary {
-            background-color: transparent;
-            border: 1px solid #475569;
-            color: #cbd5e1;
-        }
-        .btn-secondary:hover {
-            background-color: #334155;
-            color: #ffffff;
-        }
+
+        /* CSV Button (Primary) */
+        .btn-csv { background-color: #00f2fe; color: #081b29; }
+        .btn-csv:hover { background: transparent; color: #00f2fe; }
+
+        /* Site/GitHub Buttons (Secondary) */
+        .btn-secondary { background-color: transparent; color: #00f2fe; border: 2px solid #00f2fe; }
+        .btn-secondary:hover { background-color: #00f2fe; color: #081b29; }
     </style>
 </head>
 <body>
@@ -127,55 +65,67 @@
 
     <div class="projects-grid">
 
+        <!-- BookToScrape -->
         <div class="project-card">
             <div class="project-icon"><i class='bx bx-book-open'></i></div>
             <h3>BookToScrape</h3>
-            <p>Scrapes an online book repository to collect book titles, prices, ratings, and stock availability across multiple categories.</p>
+            <p>Scrapes an online book repository to collect book titles, prices, ratings, and stock availability.</p>
             <div class="btn-group">
-                <a href="#" class="btn-action btn-primary">Run Scraper</a>
-                <a href="#" class="btn-action btn-secondary">Source Code</a>
+                <a href="/static/books_to_scrap" class="btn-action btn-csv">View CSV</a>
+                <a href="http://books.toscrape.com/" target="_blank" class="btn-action btn-secondary">View Site</a>
+                <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./books_to_scrape.ipynb" target="_blank" class="btn-action btn-secondary">GitHub</a>
             </div>
         </div>
 
+        <!-- CollegeDunia -->
         <div class="project-card">
             <div class="project-icon"><i class='bx bx-buildings'></i></div>
             <h3>CollegeDunia Scraper</h3>
-            <p>Extracts educational institution frameworks, listing down courses, cut-off ranks, fees structural breakdowns, and reviews.</p>
+            <p>Extracts educational institution frameworks, listing down courses, cut-off ranks, fees structural breakdowns.</p>
             <div class="btn-group">
-                <a href="/static/collegedunia" class="btn-action btn-primary">Run Scraper</a>
-                <a href="{{ url_for('static', filename='../scrapers/collegedunia.py') }}" class="btn-action btn-secondary" target="_blank">Source Code</a>
+                <a href="/static/collegedunia" class="btn-action btn-csv">View CSV</a>
+                <a href="https://www.collegedunia.com/" target="_blank" class="btn-action btn-secondary">View Site</a>
+                <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./collegeduniyawebscrap.ipynb" target="_blank" class="btn-action btn-secondary">GitHub</a>
             </div>
         </div>
 
+        <!-- Countries of World -->
         <div class="project-card">
             <div class="project-icon"><i class='bx bx-globe'></i></div>
             <h3>Countries of World</h3>
-            <p>Gathers demographic data including population counts, geographical surface areas, capital details, and GDP rates from static charts.</p>
+            <p>Gathers demographic data including population counts, geographical surface areas, capital details, and GDP rates.</p>
             <div class="btn-group">
-                <a href="/static/countriesofworld" class="btn-action btn-primary">Run Scraper</a>
-                <a href="{{ url_for('static', filename='../scrapers/countriesofworld.py') }}" class="btn-action btn-secondary" target="_blank">Source Code</a>
+                <a href="/static/countriesofworld" class="btn-action btn-csv">View CSV</a>
+                <a href="https://www.worldometers.info/" target="_blank" class="btn-action btn-secondary">View Site</a>
+                <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./countries_of_world.ipynb" target="_blank" class="btn-action btn-secondary">GitHub</a>
             </div>
         </div>
 
-
+        <!-- Amazon -->
         <div class="project-card">
             <div class="project-icon"><i class='bx bxl-amazon'></i></div>
             <h3>Amazon Scraper</h3>
-            <p>Bypasses basic static rules to collect structural search results details, item specifications, and top seller lists metadata.</p>
+            <p>Collects structural search results details, item specifications, and top seller lists metadata.</p>
             <div class="btn-group">
-                <a href="/static/amazon_laptops" class="btn-action btn-primary">Run Scraper</a>
-                <a href="{{ url_for('static', filename='../scrapers/amazon_laptops.py') }}" class="btn-action btn-secondary" target="_blank">Source Code</a>
+                <a href="/static/amazon_laptops" class="btn-action btn-csv">View CSV</a>
+                <a href="https://www.amazon.in/" target="_blank" class="btn-action btn-secondary">View Site</a>
+                <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./Amazon_Web_Scraping.ipynb" target="_blank" class="btn-action btn-secondary">GitHub</a>
             </div>
-        </div> </div>
+        </div>
+
+        <!-- Flipkart -->
         <div class="project-card">
-    <div class="project-icon"><i class='bx bx-shopping-bag'></i></div>
-    <h3>Flipkart Scraper</h3>
-    <p>Parses e-commerce layouts to collect specifications, pricing histories, consumer star trends, and discount percentages.</p>
-    <div class="btn-group">
-        <a href="/static/flipkart_shoes" class="btn-action btn-primary">Run Scraper</a>
-        <a href="{{ url_for('static', filename='../scrapers/flipkart_shoes.py') }}" class="btn-action btn-secondary" target="_blank">Source Code</a>
+            <div class="project-icon"><i class='bx bx-shopping-bag'></i></div>
+            <h3>Flipkart Scraper</h3>
+            <p>Parses e-commerce layouts to collect specifications, pricing histories, and consumer star trends.</p>
+            <div class="btn-group">
+                <a href="/static/flipkart_shoes" class="btn-action btn-csv">View CSV</a>
+                <a href="https://www.flipkart.com/" target="_blank" class="btn-action btn-secondary">View Site</a>
+                <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./flipcart.ipynb" target="_blank" class="btn-action btn-secondary">GitHub</a>
+            </div>
+        </div>
+
     </div>
-</div>
 </div>
 
 </body>

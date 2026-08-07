@@ -3,7 +3,7 @@ import random
 BASE_URL = "https://fakestoreapi.com/products"
 def fetch_products():
     try:
-        response = requests.get(BASE_URL, timeout=10)
+        response = requests.get(BASE_URL, timeout=30)
 
         if response.status_code != 200:
             return {
@@ -16,7 +16,7 @@ def fetch_products():
         products = []
 
     
-        for item in random.sample(data, 8):
+        for item in random.sample(data, 20):
             products.append({
                 "title": item.get("title"),
                 "price": item.get("price"),

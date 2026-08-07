@@ -7,40 +7,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/quotes_to_scrap.css') }}">
     <style>
         /* Specific Fallback Styles for Quotes Component Output Layout */
-        .quote-box {
-            background: #ffffff;
-            border-left: 5px solid #06b6d4; /* Cyan border matching dashboard grid theme */
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 4px 12px 12px 4px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-        .quote-text {
-            font-size: 1.25rem;
-            font-style: italic;
-            color: #0f172a;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        .quote-author {
-            font-weight: 700;
-            color: #475569;
-            text-align: right;
-            margin-bottom: 12px;
-        }
-        .tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .quote-tag {
-            background: #ecfeff;
-            color: #0891b2;
-            font-size: 0.8rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            border: 1px solid #cffafe;
-        }
         .back-btn {
             display: inline-block;
             margin-bottom: 20px;
@@ -54,6 +20,94 @@
         .back-btn:hover {
             background: #1e293b;
         }
+
+        /* --- Table Styling Styles --- */
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Enables horizontal scrolling on small screens */
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .quotes-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .quotes-table th {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 14px 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Accent left border on the first header matching your previous theme */
+        .quotes-table th:first-child {
+            border-left: 5px solid #06b6d4; 
+        }
+
+        .quotes-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            vertical-align: top;
+        }
+
+        /* Highlight border for row on hover */
+        .quotes-table tbody tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .quotes-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Inner Content formatting */
+        .quote-text {
+            font-style: italic;
+            color: #0f172a;
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            font-weight: 700;
+            color: #475569;
+            white-space: nowrap; /* Prevents author names from awkward wrapping */
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .quote-tag {
+            background: #ecfeff;
+            color: #0891b2;
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #cffafe;
+            white-space: nowrap;
+        }
+
+        /* Empty State Warning styling */
+        .empty-state {
+            text-align: center; 
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #ef4444;
+        }
     </style>
 </head>
 <body>
@@ -64,25 +118,44 @@
     </header>
 
     <main class="container">
-        <a href="/" class="back-btn">← Back to Dashboard</a>
+        <a href="/dynamicscraping" class="back-btn">← Back </a>
 
         <div class="quotes-list-wrapper">
             
             {% if quotes %}
-                {% for item in quotes %}
-                    <div class="quote-box">
-                        <p class="quote-text">“{{ item.quote }}”</p>
-                        <div class="quote-author">— {{ item.author }}</div>
-                        <div class="tag-container">
-                            {% for tag in item.tags %}
-                                <span class="quote-tag">#{{ tag }}</span>
+                <div class="table-container">
+                    <table class="quotes-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 55%;">Quote</th>
+                                <th style="width: 20%;">Author</th>
+                                <th style="width: 25%;">Tags</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in quotes %}
+                                <tr>
+                                    <td>
+                                        <div class="quote-text">“{{ item.quote }}”</div>
+                                    </td>
+                                    <td>
+                                        <div class="quote-author">{{ item.author }}</div>
+                                    </td>
+                                    <td>
+                                        <div class="tag-container">
+                                            {% for tag in item.tags %}
+                                                <span class="quote-tag">#{{ tag }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                </tr>
                             {% endfor %}
-                        </div>
-                    </div>
-                {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             {% else %}
-                <div class="quote-box" style="text-align: center; padding: 40px;">
-                    <p style="color: #64748b;">No quotes scraped yet. Please wait a moment or verify your internet connection.</p>
+                <div class="empty-state">
+                    <p style="color: #64748b; margin: 0;">No quotes scraped yet. Please wait a moment or verify your internet connection.</p>
                     {% if error %}
                         <p style="color: #ef4444; font-size: 0.9rem; margin-top: 10px;"><strong>Error details:</strong> {{ error }}</p>
                     {% endif %}

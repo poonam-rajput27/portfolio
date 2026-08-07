@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problem Scoping | Poonam Rajput</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learnmore.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        /* Portfolio Color Theme Matching */
+        body {
+            background-color: #0d1b2a !important;
+            color: #ededed !important;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header {
+            background-color: #0d1b2a !important;
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            color: #00b4d8 !important;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        header nav a {
+            color: #ededed !important;
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        header nav a:hover, header nav a.active {
+            color: #00b4d8 !important;
+        }
+
+        /* Back Button Styling */
+        .back-btn-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 40px 10% 0 10%;
+            box-sizing: border-box;
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00b4d8;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.3s ease;
+            border: 1px solid #00b4d8;
+            padding: 8px 18px;
+            border-radius: 6px;
+            background: transparent;
+        }
+
+        .back-home-btn:hover {
+            background-color: #00b4d8;
+            color: #0d1b2a;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+            transform: translateX(-3px);
+        }
+
+        /* Projects Section Grid Layout */
+        .projects {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 30px 10% 60px 10%;
+            box-sizing: border-box;
+        }
+
+        .title {
+            color: #ededed !important;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 35px;
+        }
+
+        /* Responsive Grid with Increased Distance Between Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 380px));
+            gap: 50px; /* Increased spacing between cards */
+            justify-content: center;
+        }
+
+        /* Card Container Styling */
+        .cards .card {
+            background-color: #1e2a3a !important;
+            border-radius: 16px;
+            padding: 35px 25px;
+            min-height: 270px;
+            color: #ededed !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-sizing: border-box;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cards .card:hover {
+            transform: translateY(-5px);
+            border-color: #00b4d8;
+            box-shadow: 0 8px 25px rgba(0, 180, 216, 0.25);
+        }
+
+        .cards .card h2 {
+            color: #00b4d8 !important;
+            margin: 0 0 15px 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .cards .card h2 span {
+            font-size: 1.8rem;
+        }
+
+        .cards .card p {
+            color: #8d99ae !important;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .cards .card .btn {
+            color: #c084fc !important;
+            background: transparent !important;
+            border: none !important;
+            padding: 0;
+            text-decoration: underline;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .cards .card .btn:hover {
+            color: #00b4d8 !important;
+        }
+
+        footer {
+            color: #8d99ae !important;
+            background-color: #0d1b2a !important;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive Breakpoint for Mobile/Tablet */
+        @media (max-width: 768px) {
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .cards .card {
+                min-height: 240px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Poonam Rajput</div>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/portfolio">Portfolio</a>
+        <a href="/Explore_Projects" class="active">Explore Projects</a>
+    </nav>
+</header>
+
+<div class="back-btn-container">
+    <a href="/Explore_Projects" class="back-home-btn">
+        <i class='bx bx-left-arrow-alt'></i> Back to Projects
+    </a>
+</div>
+
+<section class="projects">
+
+    <h1 class="title">Problem Scoping Frameworks</h1>
+
+    <div class="cards">
+        
+        <!-- Card 1: Student Performance Prediction -->
+        <div class="card">
+            <div>
+                <h2><span>📈</span> Student Performance</h2>
+                <p>Early structural scoping configurations using institutional markers, machine learning data boundaries, and success pipelines.</p>
+            </div>
+            <a href="/studentperformance" class="btn">Open Project</a>
+        </div>
+
+        <!-- Card 2: AI Placement Prediction -->
+        <div class="card">
+            <div>
+                <h2><span>💼</span> AI Placement Prediction</h2>
+                <p>Employment forecast variable dependencies analysis, constraints scoping framework, and predictive analytics setup.</p>
+            </div>
+            <a href="/AI_Placement_prediction1" class="btn">Open Project</a>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Poonam Rajput | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

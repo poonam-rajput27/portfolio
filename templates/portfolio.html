@@ -3,172 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Poonam Rajput</title>
+    <title>Portfolio Data | Poonam Rajput</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #111827;
+            color: #ffffff;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        /* --- Header & Navigation Styling --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: rgba(17, 24, 39, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            color: #ffffff;
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        .logo span {
+            color: #00f2fe;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            margin-left: 30px;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: #00f2fe;
+        }
+
+        /* --- Back Button Styling --- */
+        .back-btn-container {
+            max-width: 1100px;
+            margin: 0 auto 20px auto;
+            padding: 0 40px;
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #38bdf8;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.3s ease;
+            border: 1px solid #38bdf8;
+            padding: 8px 18px;
+            border-radius: 6px;
+            background: transparent;
+        }
+
+        .back-home-btn i {
+            font-size: 1.2rem;
+        }
+
+        .back-home-btn:hover {
+            background-color: #38bdf8;
+            color: #111827;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            transform: translateX(-3px);
+        }
+
+        .title {
+            color: #38bdf8;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .custom-section-title {
+            color: #38bdf8;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        /* --- About Me Horizontal Layout --- */
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 60px auto;
+            padding: 0 40px;
+        }
+
+        .about-card-horizontal {
+            background-color: #1f2937;
+            border-radius: 12px;
+            padding: 22px 30px;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .about-card-horizontal:hover {
+            transform: translateY(-3px);
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .about-icon-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .about-icon-box i {
+            font-size: 2.2rem;
+            color: #38bdf8;
+        }
+
+        .about-content-box {
+            flex-grow: 1;
+        }
+
+        .about-content-box h3 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .about-content-box p {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Education Row inside Horizontal Card */
+        .education-horizontal-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 5px;
+        }
+
+        .edu-item {
+            font-size: 0.85rem;
+            color: #d1d5db;
+            background: rgba(31, 41, 55, 0.8);
+            border: 1px solid rgba(156, 163, 175, 0.15);
+            padding: 8px 14px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .edu-item strong {
+            color: #ffffff;
+            display: block;
+        }
+
+        .edu-item span {
+            color: #38bdf8;
+            font-weight: 500;
+        }
+
+        /* --- Technical Skills Section Custom Grid --- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto 60px auto;
+            padding: 0 40px;
+        }
+
+        .skill-card {
+            background-color: #1f2937;
+            border-radius: 12px;
+            padding: 35px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            border: 1px solid transparent;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .skill-card i {
+            font-size: 3.5rem;
+            color: #38bdf8;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .skill-card h3 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* --- Let's Connect (Contact) Redesign --- */
+        .connect-wrapper {
+            max-width: 1100px;
+            margin: 0 auto 80px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .connect-intro-text {
+            color: #9ca3af;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .connect-intro-text span {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        .contact-cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background-color: #1f2937;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #ffffff;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .contact-card i {
+            font-size: 2.8rem;
+            color: #38bdf8;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover i {
+            transform: scale(1.1);
+        }
+
+        .contact-card h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .contact-card p {
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #111827;
+            border-top: 1px solid rgba(156, 163, 175, 0.1);
+        }
+
+        /* Responsive Navbar and Grid setup */
+        @media (max-width: 992px) {
+            header {
+                padding: 20px 5%;
+            }
+            nav a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+            .about-container, .skills-container, .connect-wrapper, .back-btn-container {
+                padding: 0 20px;
+            }
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            .contact-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-card-horizontal {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            .education-horizontal-list {
+                flex-direction: column;
+            }
+            .contact-cards-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <div class="logo">
-        Poonam Rajput
-    </div>
+    <div class="logo">Poonam Rajput<span>.</span></div>
     <nav>
         <a href="/">Home</a>
-        <a href="/portfolio">Portfolio</a>
-        <a href="/learnMore">Learn More</a>
-        <a href="/scraping">Projects</a>
+        <a href="#about" class="active">About Me</a>
+        <a href="#skills">My Skills</a>
+        <a href="#connect">Contact</a>
     </nav>
 </header>
 
-<section class="hero">
-    <div class="hero-text">
-        <h3>Hello, I'm</h3>
-        <h1>Poonam Rajput</h1>
-        <h2>Python Developer | AI Enthusiast | Web Developer</h2>
-        <p>
-            I am a Computer Science Engineering student passionate about Artificial
-            Intelligence, Machine Learning, Python Programming, Flask Development,
-            and creating modern web applications.
-        </p>
-        <a href="/learnMore" class="btn">Know More</a>
+<section id="about" style="padding-top: 130px;">
+    <!-- Back Button pointing to the index page (/) -->
+    <div class="back-btn-container">
+        <a href="/" class="back-home-btn">
+            <i class='bx bx-left-arrow-alt'></i> Back to Home
+        </a>
     </div>
-    <div class="hero-image">
-        <img src="{{ url_for('static', filename='image/profile.png') }}" alt="Profile">
-    </div>
-</section>
 
-<section>
     <h2 class="title">About Me</h2>
-    <div class="cards">
-        <div class="card">
-            <i class='bx bx-user'></i>
-            <h3>Who Am I?</h3>
-            <p>
-                I am a motivated Computer Science student with strong problem-solving
-                skills and a passion for developing intelligent software solutions.
-            </p>
+    <div class="about-container">
+        
+        <!-- Card 1: Horizontal Professional Bio -->
+        <div class="about-card-horizontal">
+            <div class="about-icon-box">
+                <i class='bx bx-terminal'></i>
+            </div>
+            <div class="about-content-box">
+                <h3>Who Am I?</h3>
+                <p>
+                    Aspiring Software Developer specializing in <strong>Python engineering, backend systems, and automation frameworks</strong>. Focused on turning complex data logic into smooth user experiences.
+                </p>
+            </div>
         </div>
-        <div class="card">
-            <i class='bx bx-book'></i>
-            <h3>Education</h3>
-            <p>
-                Bachelor of Technology (B.Tech)<br>
-                Computer Science Engineering
-            </p>
+
+        <!-- Card 2: Horizontal Education Stream -->
+        <div class="about-card-horizontal">
+            <div class="about-icon-box">
+                <i class='bx bx-book-bookmark'></i>
+            </div>
+            <div class="about-content-box" style="width: 100%;">
+                <h3 style="margin-bottom: 12px;">Education</h3>
+                <div class="education-horizontal-list">
+                    <div class="edu-item">
+                        <strong>B.Tech - CSE</strong>
+                        JMIETI Radaur
+                    </div>
+                    <div class="edu-item">
+                        <strong>Senior Secondary (12th)</strong>
+                        PM SHRI Govt. SSS, Damla • <span>89.4%</span>
+                    </div>
+                    <div class="edu-item">
+                        <strong>Secondary (10th)</strong>
+                        DSVM High School • <span>89.0%</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card">
-            <i class='bx bx-target-lock'></i>
-            <h3>Career Goal</h3>
-            <p>
-                To become an AI Engineer and Full Stack Developer while building
-                innovative applications that solve real-world problems.
-            </p>
+
+        <!-- Card 3: Horizontal Technical Philosophy -->
+        <div class="about-card-horizontal">
+            <div class="about-icon-box">
+                <i class='bx bx-analyse'></i>
+            </div>
+            <div class="about-content-box">
+                <h3>Technical Philosophy</h3>
+                <p>
+                    Passionate about integrating <strong>Web Development with AI/ML solutions</strong>. Believer in writing clean, modular, and maintainable code for scalable applications.
+                </p>
+            </div>
         </div>
+        
     </div>
 </section>
 
-<section>
+<!-- Technical Skills Section -->
+<section id="skills">
     <h2 class="title">Technical Skills</h2>
-    <div class="cards">
-        <div class="card"><i class='bx bxl-python'></i><h3>Python</h3></div>
-        <div class="card"><i class='bx bxl-html5'></i><h3>HTML5</h3></div>
-        <div class="card"><i class='bx bxl-css3'></i><h3>CSS3</h3></div>
-        <div class="card"><i class='bx bxl-javascript'></i><h3>JavaScript</h3></div>
-        <div class="card"><i class='bx bx-data'></i><h3>SQL</h3></div>
-        <div class="card"><i class='bx bx-code'></i><h3>Flask</h3></div>
-        <div class="card"><i class='bx bx-brain'></i><h3>Machine Learning</h3></div>
-        <div class="card"><i class='bx bxl-git'></i><h3>Git & GitHub</h3></div>
+    <div class="skills-container">
+        <div class="skill-card"><i class='bx bxl-python'></i><h3>Python</h3></div>
+        <div class="skill-card"><i class='bx bxl-html5'></i><h3>HTML5</h3></div>
+        <div class="skill-card"><i class='bx bxl-css3'></i><h3>CSS3</h3></div>
+        <div class="skill-card"><i class='bx bxl-javascript'></i><h3>JavaScript</h3></div>
+        <div class="skill-card"><i class='bx bx-data'></i><h3>SQL</h3></div>
+        <div class="skill-card"><i class='bx bx-code'></i><h3>Flask</h3></div>
+        <div class="skill-card"><i class='bx bx-brain'></i><h3>Machine Learning</h3></div>
+        <div class="skill-card"><i class='bx bxl-git'></i><h3>Git & GitHub</h3></div>
     </div>
 </section>
 
-<section>
-    <h2 class="title">My Projects</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Scraping</h3>
-            <p>
-                A Python-based web scraping project that extracts product details,
-                ratings, and prices from Amazon.
-            </p>
-            <a href="/scraping" class="btn">View Project</a>
-        </div>
-
-        <div class="card">
-            <h3>AI Interviewer</h3>
-            <p>
-                An Artificial Intelligence-based Interview System that analyzes candidate
-                responses and provides interview insights.
-            </p>
-            <a href="#" class="btn">View Project</a>
-        </div>
-
-        <div class="card">
-            <h3>Synthetic Data Generator</h3>
-            <p>
-                A Flask-based application for generating synthetic datasets and storing
-                them securely in databases.
-            </p>
-            <a href="#" class="btn">View Project</a>
-        </div>
-
-        <div class="card">
-            <h3>Responsive Static Website</h3>
-            <p>
-                Designed and developed a responsive frontend website using HTML, CSS,
-                and JavaScript.
-            </p>
-            <a href="/static" class="btn">View Project</a>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2 class="title">Certificates</h2>
-    <div class="cards">
-        <div class="card">
-            <i class='bx bx-award'></i>
-            <h3>Python Programming</h3>
-            <p>Successfully completed Python Programming Certification.</p>
-        </div>
-        <div class="card">
-            <i class='bx bx-medal'></i>
-            <h3>Web Development</h3>
-            <p>Completed HTML, CSS & JavaScript Development Training.</p>
-        </div>
-        <div class="card">
-            <i class='bx bx-certification'></i>
-            <h3>Machine Learning</h3>
-            <p>Completed introductory Machine Learning certification.</p>
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2 class="title">Contact</h2>
-    <div class="cards">
-        <div class="card">
-            <i class='bx bxl-linkedin-square'></i>
-            <h3>LinkedIn</h3>
-            <p>Connect professionally.</p>
-        </div>
-        <div class="card">
-            <i class='bx bxl-github'></i>
-            <h3>GitHub</h3>
-            <p>Explore my coding projects.</p>
-        </div>
-        <div class="card">
-            <i class='bx bx-envelope'></i>
-            <h3>Email</h3>
-            <p>Feel free to contact me anytime.</p>
+<!-- Let's Connect Section -->
+<section id="connect">
+    <h2 class="custom-section-title">Let's Connect</h2>
+    <div class="connect-wrapper">
+        <p class="connect-intro-text">
+            Have an exciting idea, a project to collaborate on, or just want to discuss the future of <span>Artificial Intelligence & Web Development</span>? I'm always open to talking! Drop a message through any of the channels below.
+        </p>
+        
+        <div class="contact-cards-container">
+            <!-- LinkedIn Card -->
+            <a href="https://linkedin.com/in/YOUR-USERNAME" target="_blank" class="contact-card">
+                <i class='bx bxl-linkedin-square'></i>
+                <h3>Professional Network</h3>
+                <p>Connect with me on LinkedIn</p>
+            </a>
+            
+            <!-- GitHub Card -->
+            <a href="https://github.com/poonam-rajput27" target="_blank" class="contact-card">
+                <i class='bx bxl-github'></i>
+                <h3>Open Source</h3>
+                <p>Explore my repositories & code</p>
+            </a>
+            
+            <!-- Email Card -->
+            <a href="mailto:poonamrajputdamla@gmail.com" class="contact-card">
+                <i class='bx bxl-gmail'></i>
+                <h3>Direct Email</h3>
+                <p>poonamrajputdamla@gmail.com</p>
+            </a>
         </div>
     </div>
 </section>
 
 <footer>
     <h3>Poonam Rajput</h3>
-    <p>Python Developer • AI Enthusiast • Web Developer</p>
     <p>© 2026 Poonam Rajput | All Rights Reserved</p>
 </footer>
 

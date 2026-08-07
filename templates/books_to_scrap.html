@@ -4,7 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books Showcase Scraper</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/books_to_scrape.css') }}">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            /* Smooth classic blue gradient background */
+            background: linear-gradient(135deg, #2b5c9e, #1e3c72);
+            min-height: 100vh;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Page Header Layout --- */
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .page-header p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 400;
+        }
+
+        /* --- Clean White Panel Container --- */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            background: #ffffff; /* Crisp crisp white backdrop */
+            padding: 25px;
+            border-radius: 16px; /* Smooth card perimeter radius */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            margin-bottom: 20px;
+        }
+
+        /* --- Table Element Styles --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            margin-top: 10px;
+        }
+
+        thead {
+            background: #234e8c; /* Dark theme matching blue header accent block */
+            color: #ffffff;
+        }
+
+        th {
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* Standardized top border layout rounding masks */
+        th:first-child { border-top-left-radius: 6px; }
+        th:last-child { border-top-right-radius: 6px; }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e6ecf5;
+            color: #2c3e50;
+            font-size: 0.95rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* Left-aligned spacing overrides for text catalog entries */
+        .text-left {
+            text-align: left;
+            font-weight: 500;
+            color: #1a2530;
+        }
+
+        /* Left border sequence mapping tracking details */
+        td:first-child {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        /* Price value metrics emphasis design */
+        .price-cell {
+            color: #234e8c;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+
+        /* Inline badges rendering stock levels info safely */
+        .status-badge {
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .instock {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .outstock {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* Alternating striping row logic flags */
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* Interactive row visibility styling indicators */
+        tbody tr:hover {
+            background-color: #f0f4f8;
+            transition: background-color 0.15s ease;
+            cursor: pointer;
+        }
+
+        /* --- Missing Output Boundaries --- */
+        .error-card {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+
+        /* --- Bottom Navigation Redirect Layouts --- */
+        .back-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .back-link {
+            color: #234e8c;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #102a52;
+            text-decoration: underline;
+        }
+
+        /* Mobile layout breakpoints adjustments */
+        @media(max-width: 768px) {
+            table { display: block; overflow-x: auto; }
+            body { padding: 20px 10px; }
+            .container { padding: 15px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -15,38 +181,46 @@
 
     <div class="container">
         {% if books %}
-        <div class="books-grid">
-            {% for book in books %}
-            <div class="book-card">
-                <div class="book-info">
-                    <h3 class="book-title" title="{{ book.title }}">{{ book.title }}</h3>
-                    
-                    <div class="rating">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 8%;">S.No</th>
+                    <th class="text-left" style="width: 47%;">Book Title</th>
+                    <th style="width: 15%;">Rating</th>
+                    <th style="width: 15%;">Price</th>
+                    <th style="width: 15%;">Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td class="text-left" title="{{ book.title }}">{{ book.title }}</td>
+                    <td style="color: #f1c40f;">
                         {% if book.rating > 0 %}
                             {% for i in range(book.rating) %}⭐{% endfor %}
                         {% else %}
-                            <span>No Rating</span>
+                            <span style="color: #7f8c8d; font-size: 0.9rem;">No Rating</span>
                         {% endif %}
-                    </div>
-                    
-                    <div class="card-footer">
-                        <span class="price">{{ book.price }}</span>
-                        <span class="status {% if 'In stock' in book.availability %}instock{% else %}outstock{% endif %}">
+                    </td>
+                    <td class="price-cell">{{ book.price }}</td>
+                    <td>
+                        <span class="status-badge {% if 'In stock' in book.availability %}instock{% else %}outstock{% endif %}">
                             {{ book.availability }}
                         </span>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         {% else %}
             <div class="error-card">
                 <p>No book statistics pulled down. Check network connection or target domain availability.</p>
             </div>
         {% endif %}
         
-        <div class="back-dashboard">
-            <a href="{{ url_for('scraping_static') }}">← Return to Projects Dashboard</a>
+        <div class="back-container">
+            <a href="{{ url_for('scraping_static') }}" class="back-link">← Return to Projects Dashboard</a>
         </div>
     </div>
 

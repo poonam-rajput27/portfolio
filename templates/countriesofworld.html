@@ -4,21 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Demographics Scraper Results</title>
+    
     <style>
-        body { font-family: Arial, sans-serif; background-color: #064e3b; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 1000px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        th { background-color: #059669; color: white; }
-        tr:nth-child(even) { background-color: #f9f9f9; }
-        .error-card { text-align: center; padding: 40px; color: #666; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            /* स्क्रीनशॉट वाला क्लासिक लाइट ब्लू ग्रेडिएंट बैकग्राउंड */
+            background: linear-gradient(135deg, #2b5c9e, #1e3c72);
+            min-height: 100vh;
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* --- Header Section --- */
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 400;
+        }
+
+        /* --- White Container Card --- */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            background: #ffffff; /* शुद्ध सफेद कार्ड */
+            padding: 25px;
+            border-radius: 16px; /* गोल कोने */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+            margin-bottom: 20px;
+        }
+
+        /* --- Table Styling --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            margin-top: 10px;
+        }
+
+        thead {
+            background: #234e8c; /* गहरा नीला टेबल हेडर */
+            color: #ffffff;
+        }
+
+        th {
+            padding: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        /* कोनों को सुंदर रखने के लिए टॉप हेडर रेडियस */
+        th:first-child { border-top-left-radius: 6px; }
+        th:last-child { border-top-right-radius: 6px; }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e6ecf5;
+            color: #2c3e50;
+            font-size: 0.95rem;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* कंट्री डिटेल्स कॉलम को लेफ्ट अलाइन और थोड़ा बोल्ड रखने के लिए */
+        .text-left {
+            text-align: left;
+            font-weight: 500;
+            color: #1a2530;
+        }
+
+        /* सीरियल नंबर (S.No) कॉलम */
+        td:first-child {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        /* टोटल पापुलेशन कॉलम के आंकड़े थीम ब्लू कलर में हाइलाइट करने के लिए */
+        .metric-cell {
+            color: #234e8c;
+            font-weight: 600;
+        }
+
+        /* ज़ेबरा लाइन्स (Alternate rows के लिए लाइट ग्रे बैकग्राउंड) */
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        /* टेबल होवर इफेक्ट */
+        tbody tr:hover {
+            background-color: #f0f4f8;
+            transition: background-color 0.15s ease;
+            cursor: pointer;
+        }
+
+        /* --- Error / No Data State --- */
+        .error-card {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+
+        /* --- Dashboard Return Button --- */
+        .back-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .back-link {
+            color: #234e8c;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: #102a52;
+            text-decoration: underline;
+        }
+
+        /* मोबाइल रिस्पॉन्सिव ब्रेकिंग लेआउट */
+        @media(max-width: 768px) {
+            table { display: block; overflow-x: auto; }
+            body { padding: 20px 10px; }
+            .container { padding: 15px; }
+        }
     </style>
 </head>
 <body>
 
-    <header style="text-align: center; margin-bottom: 20px; color: white;">
-        <h1>🌍 Global Metric Records</h1>
-        <p style="opacity: 0.9;">Static Web Scraping using Python + BeautifulSoup</p>
+    <header class="dashboard-header">
+        <h1 class="title">🌍 Global Metric Records</h1>
+        <p class="subtitle">Static Web Scraping using Python + BeautifulSoup</p>
     </header>
 
     <div class="container">
@@ -26,20 +164,20 @@
         <table>
             <thead>
                 <tr>
-                    <th>S.No</th>
-                    <th>Country Name</th>
-                    <th>Capital City</th>
-                    <th>Total Population</th>
-                    <th>Surface Area (sq km)</th>
+                    <th style="width: 8%;">S.No</th>
+                    <th class="text-left" style="width: 27%;">Country Name</th>
+                    <th style="width: 25%;">Capital City</th>
+                    <th style="width: 20%;">Total Population</th>
+                    <th style="width: 20%;">Surface Area (sq km)</th>
                 </tr>
             </thead>
             <tbody>
                 {% for country in countries %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ country.name }}</td>
+                    <td class="text-left">{{ country.name }}</td>
                     <td>{{ country.capital }}</td>
-                    <td style="color: #059669; font-weight: bold;">{{ country.population }}</td>
+                    <td class="metric-cell">{{ country.population }}</td>
                     <td>{{ country.area }}</td>
                 </tr>
                 {% endfor %}
@@ -50,9 +188,9 @@
                 <p>No demographic statistics pulled down. Check network drivers.</p>
             </div>
         {% endif %}
-        <br>
-        <div style="text-align: center;">
-            <a href="{{ url_for('scraping_static') }}" style="color: #064e3b; text-decoration: none; font-weight: bold;">← Return to Projects Dashboard</a>
+        
+        <div class="back-container">
+            <a href="{{ url_for('scraping_static') }}" class="back-link">← Return to Projects Dashboard</a>
         </div>
     </div>
 

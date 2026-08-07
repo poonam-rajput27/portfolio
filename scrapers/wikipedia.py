@@ -1,42 +1,43 @@
 import requests
-import json
+import pandas as pd
 
-# Wikipedia official search API endpoint
-BASE_URL = "https://en.wikipedia.org/w/api.php"
+def fetch_wikipedia_data(search_term="technology", limit=20):
+    """
+    Fetches Wikipedia articles metadata based on search parameters.
+    Returns a dictionary formatted for consumption by the Flask application pipeline.
+    """
+    # Wikipedia official API endpoint
+    BASE_URL = "https://en.wikipedia.org/w/api.php"
+    HEADERS = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    }
 
-def fetch_wikipedia_data():
     try:
-        # Configuration parameters for searching articles
-        payload = {
+        # 1. Fetch search data directly using payload configuration
+        search_payload = {
             "action": "query",
             "list": "search",
-            "srsearch": "technology", 
+            "srsearch": search_term, 
             "format": "json",
             "utf8": 1,
-            "srlimit": 5 
+            "srlimit": limit
         }
+
+        response = requests.get(BASE_URL, params=search_payload, headers=HEADERS, timeout=20)
         
-        # A completely standard browser User-Agent to guarantee it doesn't hang or block
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        }
-        
-        # Reduced timeout to 5 seconds so it breaks immediately if there's a connection issue
-        response = requests.get(BASE_URL, params=payload, headers=headers, timeout=5)
-        
-        # Status check
         if response.status_code != 200:
             return {
                 "success": False,
-                "error": f"API failed with status {response.status_code}"
+                "error": f"API request failed with status code {response.status_code}"
             }
-            
-        data = response.json()
-        search_results = data.get("query", {}).get("search", [])
-        
+
+        search_results = response.json().get("query", {}).get("search", [])
         articles = []
+
+        # 2. Extract baseline details without fetching the summary text
         for item in search_results:
             page_id = item.get("pageid")
+            
             articles.append({
                 "title": item.get("title"),
                 "page_id": page_id,
@@ -44,14 +45,25 @@ def fetch_wikipedia_data():
                 "category": "Wikipedia Article",
                 "link": f"https://en.wikipedia.org/?curid={page_id}"
             })
-            
+
+        # 3. Return the payload safely inside the expected data block schema
         return {
             "success": True,
             "products": articles
         }
-        
-    except requests.exceptions.RequestException as e:
+
+    except Exception as e:
         return {
             "success": False,
             "error": str(e)
         }
+
+# Allows debugging check via local terminal run
+if __name__ == "__main__":
+    result = fetch_wikipedia_data(search_term="technology", limit=5)
+    if result["success"]:
+        df = pd.DataFrame(result["products"])
+        print("\n--- Local Testing Layout Preview ---")
+        print(df)
+    else:
+        print(f"Error occurred: {result['error']}")

@@ -1,177 +1,137 @@
-/* ==========================================================================
-   Global Reset & Theme Variables
-   ========================================================================== */
+/* dynamicscraping.css */
+
+/* --- Import Inter Font (closest match to image) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* --- Reset & Global --- */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f8fafc;
-    color: #1e293b;
-    line-height: 1.5;
-    padding-bottom: 60px;
+    background-color: #0d1221; /* Very dark navy background */
+    color: #e6e6e6; /* Off-white text */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    padding: 60px; /* Base padding around the whole layout */
 }
 
-/* ==========================================================================
-   Header Elements
-   ========================================================================== */
-.dashboard-header {
-    background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
-    color: #ffffff;
-    text-align: center;
-    padding: 60px 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.dashboard-header .title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 12px;
-    letter-spacing: -0.5px;
-}
-
-.dashboard-header .subtitle {
-    font-size: 1.1rem;
-    color: #cbd5e1;
-    max-width: 600px;
+/* --- Container --- */
+.container {
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* ==========================================================================
-   Grid System & Layout
-   ========================================================================== */
-.container {
-    max-width: 1200px;
-    margin: -30px auto 0 auto;
-    padding: 0 20px;
+/* --- Header Section --- */
+.dashboard-header {
+    margin-bottom: 50px;
+    padding-left: 20px; /* Slight offset for title text */
 }
 
+.title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #a0a0a0; /* De-emphasized text */
+    margin-bottom: 40px;
+    max-width: 700px;
+}
+
+/* --- Grid System --- */
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 30px; /* Space between cards */
 }
 
-/* ==========================================================================
-   Card Styling Structure
-   ========================================================================== */
+/* --- Card Styling --- */
 .card {
-    background: #ffffff;
-    border-radius: 16px;
+    background-color: #1a2335; /* Dark blue-grey card background */
+    border-radius: 12px;
     padding: 30px;
-    position: relative;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Subtle border for definition */
     display: flex;
     flex-direction: column;
-    border-top: 5px solid #cbd5e1;
+    height: 100%; /* Ensures all cards in a row have same height */
+    position: relative; /* For badge positioning */
 }
 
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+/* Card Icons */
+.card-icon {
+    font-size: 2rem;
+    color: #3b82f6; /* Identical blue color from image for icons */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
 }
 
-/* Scraper Top Border Accent Brand Colors 
-   ========================================================================== */
-.card-quotes { border-top-color: #06b6d4; }       /* Cyan */
-.card-imdb { border-top-color: #f5c518; }         /* IMDb Gold */
-.card-nike { border-top-color: #ff6b00; }         /* Nike Orange */
-.card-yahoo { border-top-color: #720e9e; }        /* Yahoo Purple */
-.card-indeed { border-top-color: #2164f3; }       /* Indeed Blue */
-
-/* Badges inside card layouts */
+/* Card Badge (for Dynamic projects) */
 .card-badge {
     position: absolute;
     top: 20px;
     right: 20px;
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #3b82f6;
+    padding: 6px 14px;
+    border-radius: 20px;
     font-size: 0.75rem;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 9999px;
-    background: #f1f5f9;
-    color: #475569;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-.card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    width: fit-content;
-}
-
+/* Card Typography */
 .card h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 12px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 15px;
 }
 
 .card p {
-    font-size: 0.95rem;
-    color: #64748b;
-    margin-bottom: 25px;
-    flex-grow: 1; /* Pushes the buttons smoothly to the bottom line */
+    font-size: 1rem;
+    color: #b0b0b0; /* Light grey text */
+    margin-bottom: 30px;
+    flex-grow: 1; /* Pushes button section to bottom */
 }
 
-/* ==========================================================================
-   Button Styling Elements
-   ========================================================================== */
+/* --- Buttons --- */
 .buttons {
     display: flex;
-    gap: 12px;
+    margin-top: auto; /* Ensures button is always at the bottom */
 }
 
 .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 16px;
-    font-size: 0.9rem;
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 1rem;
     font-weight: 600;
-    border-radius: 8px;
     text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    flex: 1;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+    width: 100%; /* Makes button span full card width when singular */
 }
 
-/* Primary View Details Button */
 .btn-primary {
-    background-color: #0f172a;
+    background-color: #3b82f6; /* Identical vibrant blue button */
     color: #ffffff;
 }
 
 .btn-primary:hover {
-    background-color: #1e293b;
+    background-color: #2563eb; /* Slightly darker on hover */
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
-/* Secondary External Link Button */
+/* Hide the secondary button style, as only the primary 'Run Scraper' type is used */
 .btn-secondary {
-    background-color: #f1f5f9;
-    color: #475569;
-    border: 1px solid #e2e8f0;
-}
-
-.btn-secondary:hover {
-    background-color: #e2e8f0;
-    color: #0f172a;
-}
-
-/* ==========================================================================
-   Responsive Adaptations
-   ========================================================================== */
-@media (max-width: 640px) {
-    .dashboard-header {
-        padding: 40px 15px;
-    }
-    .dashboard-header .title {
-        font-size: 1.8rem;
-    }
-    .container {
-        margin-top: -15px;
-    }
+    display: none;
 }

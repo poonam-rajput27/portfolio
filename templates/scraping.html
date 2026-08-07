@@ -9,7 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
         body {
-            background-color: #0f172a;
+            background-color: #081b29; /* Changed to match portfolio deep dark navy */
             color: #f8fafc;
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -33,11 +33,12 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-bottom: 3rem; /* Added margin below the grid for the new button placement */
         }
 
         .scraping-card {
-            background: #1e293b;
-            border: 1px solid #334155;
+            background: #112e42; /* Changed to match portfolio lighter card background */
+            border: 1px solid rgba(0, 242, 254, 0.2); /* Changed border to subtle cyan */
             border-radius: 16px;
             padding: 2.5rem 2rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
@@ -48,8 +49,8 @@
 
         .scraping-card:hover {
             transform: translateY(-8px);
-            border-color: #38bdf8;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(56, 189, 248, 0.2);
+            border-color: #00f2fe; /* Changed hover border to portfolio cyan */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 242, 254, 0.3); /* Changed shadow glow */
         }
 
         .card-icon {
@@ -59,7 +60,7 @@
 
         .card-heading {
             font-size: 1.6rem;
-            color: #38bdf8;
+            color: #00f2fe; /* Changed card title to portfolio cyan */
             margin: 0 0 1rem 0;
             font-weight: 700;
         }
@@ -76,17 +77,19 @@
             display: inline-block;
             align-self: flex-start;
             padding: 0.75rem 1.75rem;
-            background-color: #2563eb;
-            color: #ffffff;
+            background-color: transparent; /* Changed button to match outline style */
+            color: #00f2fe; /* Text color cyan */
+            border: 1px solid #00f2fe; /* Cyan border */
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
             font-size: 0.95rem;
-            transition: background-color 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .btn-explore:hover {
-            background-color: #1d4ed8;
+            background-color: #00f2fe; /* Solid cyan on hover */
+            color: #081b29; /* Dark text on hover */
         }
         
         .back-link {
@@ -96,19 +99,47 @@
             text-decoration: none;
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
+            transition: color 0.3s ease;
         }
         .back-link:hover {
-            color: #38bdf8;
+            color: #00f2fe; /* Changed back button hover to cyan */
         }
         .back-link i {
             margin-right: 5px;
+        }
+
+        /* Styling for the new Navigation Button */
+        .navigation-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .btn-nav-projects {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.85rem 2rem;
+            background-color: #00f2fe; /* Main cyan fill */
+            color: #081b29; /* Dark text contrast */
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+        }
+        .btn-nav-projects:hover {
+            background-color: transparent;
+            color: #00f2fe;
+            border: 1px solid #00f2fe;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.4);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
 <div class="scraping-section container">
-    <a href="/" class="back-link"><i class='bx bx-arrow-back'></i> Back to Portfolio</a>
+    <a href="/Explore_Projects" class="back-link"><i class='bx bx-arrow-back'></i> Back </a>
     <h2 class="section-title">Types of Scraping</h2>
 
     <div class="cards-grid">
@@ -117,7 +148,13 @@
             <div class="card-icon">🌐</div>
             <h3 class="card-heading">Static Scraping</h3>
             <p class="card-text">Extract information from HTML pages using Requests and BeautifulSoup.</p>
-            <a href="/static" class="btn-explore">Explore</a>
+            <a href="/scraping_static" class="btn-explore">Explore</a>
+        </div>
+        <div class="scraping-card">
+            <div class="card-icon">🔄</div>
+            <h3 class="card-heading">API Scraping</h3>
+            <p class="card-text">Collect structured JSON/XML data directly from internal endpoints using Python Requests.</p>
+            <a href="/apiscraping" class="btn-explore">Explore</a>
         </div>
 
         <div class="scraping-card">
@@ -127,14 +164,12 @@
             <a href="/dynamicscraping" class="btn-explore">Explore</a>
         </div>
 
-        <div class="scraping-card">
-            <div class="card-icon">🔄</div>
-            <h3 class="card-heading">API Scraping</h3>
-            <p class="card-text">Collect structured JSON/XML data directly from internal endpoints using Python Requests.</p>
-            <a href="/apiscraping" class="btn-explore">Explore</a>
-        </div>
+        
 
     </div>
+
+    <!-- Added button pointing to the Explore Projects page -->
+    
 </div>
 
 </body>

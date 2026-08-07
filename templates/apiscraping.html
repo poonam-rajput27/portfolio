@@ -4,11 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Scraping Dashboards</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/apiscraping.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #081b29; color: #ededed; padding: 4rem 10%; }
+
+        .dashboard-header { margin-bottom: 3rem; }
+        
+        /* Back Button Style */
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #00f2fe;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            transition: 0.3s ease;
+        }
+        .btn-back:hover {
+            color: #ffffff;
+            transform: translateX(-4px);
+        }
+
+        .title { font-size: 2.5rem; color: #ffffff; margin-bottom: 0.5rem; font-weight: 700; }
+        .subtitle { color: #b2c4d4; font-size: 1.1rem; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #162438;
+            border: 2px solid #00f2fe;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s ease;
+        }
+
+        .card-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
+        .card h2 { font-size: 1.5rem; color: #00f2fe; margin-bottom: 0.75rem; font-weight: 600; }
+        .card p { color: #b2c4d4; font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1; }
+
+        /* Buttons Container */
+        .buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+        
+        /* Base Button Structure */
+        .btn {
+            padding: 6px 14px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.8rem;
+            transition: 0.3s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        /* 1st Button: Solid Cyan */
+        .btn-csv {
+            background-color: #00f2fe;
+            color: #081b29;
+            border: 1px solid #00f2fe;
+        }
+        .btn-csv:hover {
+            background-color: transparent;
+            color: #00f2fe;
+        }
+
+        /* 2nd & 3rd Buttons: Outlined Cyan */
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #00f2fe;
+            color: #00f2fe;
+        }
+        .btn-outline:hover {
+            background-color: #00f2fe;
+            color: #081b29;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 2rem 5%; }
+            .title { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
 
     <header class="dashboard-header">
+        <a href="javascript:history.back()" class="btn-back">← Back</a>
         <h1 class="title">🌐 API Scraping Projects</h1>
         <p class="subtitle">A curated collection of parsed dynamic content engines and interface datasets.</p>
     </header>
@@ -16,58 +105,63 @@
     <main class="container">
         <div class="cards-grid">
 
-            <div class="card card-meal">
-                <div class="card-badge">Food API</div>
+            <!-- The Meal DB Card -->
+            <div class="card">
                 <div class="card-icon">🍽️</div>
                 <h2>The Meal DB</h2>
                 <p>Fetch delicious recipe frameworks, ingredients, and culinary preparation metadata via public APIs.</p>
                 <div class="buttons">
-                    <a href="/mealdb" class="btn btn-primary">View Details</a>
-                    <a href="https://www.themealdb.com/" target="_blank" class="btn btn-secondary">Website</a>
+                    <a href="/mealdb" class="btn btn-csv">View CSV</a>
+                    <a href="https://www.themealdb.com/" target="_blank" class="btn btn-outline">View Site</a>
+                    <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./mealdb.ipynb" class="btn btn-outline">GitHub</a>
                 </div>
             </div>
 
-            <div class="card card-wiki">
-                <div class="card-badge">Data API</div>
+            <!-- Wikipedia Card -->
+            <div class="card">
                 <div class="card-icon">📚</div>
                 <h2>Wikipedia Engine</h2>
                 <p>Query live encyclopedia endpoints to harvest summaries, metadata metrics, and search strings.</p>
                 <div class="buttons">
-                    <a href="/wikipedia" class="btn btn-primary">View Details</a>
-                    <a href="https://en.wikipedia.org/w/api.php" target="_blank" class="btn btn-secondary">Website</a>
+                    <a href="/wikipedia" class="btn btn-csv">View CSV</a>
+                    <a href="https://en.wikipedia.org/w/api.php" target="_blank" class="btn btn-outline">View Site</a>
+                    <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./wikipedia.ipynb" class="btn btn-outline">GitHub</a>
                 </div>
             </div>
 
-            <div class="card card-fakestore">
-                <div class="card-badge">E-Commerce</div>
+            <!-- Fake Store API Card -->
+            <div class="card">
                 <div class="card-icon">🛍️</div>
-                <h2>Fake Store API</h2>
+                <h2>Fake_store_api</h2>
                 <p>Pipeline store inventory, including clothing items, accessories, ratings, and pricing schemas.</p>
                 <div class="buttons">
-                    <a href="/fakestore" class="btn btn-primary">View Details</a>
-                    <a href="https://fakestoreapi.com/" target="_blank" class="btn btn-secondary">Website</a>
+                    <a href="/fake_store_api" class="btn btn-csv">View CSV</a>
+                    <a href="https://fakestoreapi.com/" target="_blank" class="btn btn-outline">View Site</a>
+                    <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./Fake_store.ipynb" class="btn btn-outline">GitHub</a>
                 </div>
             </div>
 
-            <div class="card card-dummyjson">
-                <div class="card-badge">Products Data</div>
+            <!-- JSON Placeholder Card -->
+            <div class="card">
                 <div class="card-icon">⚙️</div>
-                <h2>json_placeholder </h2>
+                <h2>json_placeholder</h2>
                 <p>Ingest robust product categories, user mock data, and system catalogs for application tests.</p>
                 <div class="buttons">
-                    <a href="/json_placeholder" class="btn btn-primary">View Details</a>
-                    <a href="https://dummyjson.com/" target="_blank" class="btn btn-secondary">Website</a>
+                    <a href="/json_placeholder" class="btn btn-csv">View CSV</a>
+                    <a href="https://dummyjson.com/" target="_blank" class="btn btn-outline">View Site</a>
+                    <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./json_placeholder%20(1).ipynb" class="btn btn-outline">GitHub</a>
                 </div>
             </div>
 
-            <div class="card card-cat">
-                <div class="card-badge">Media API</div>
+            <!-- The Cat API Card -->
+            <div class="card">
                 <div class="card-icon">🐱</div>
                 <h2>The Cat API</h2>
                 <p>Stream random image elements, breed profile metrics, and structural categorization data rules.</p>
                 <div class="buttons">
-                    <a href="/catapi" class="btn btn-primary">View Details</a>
-                    <a href="https://thecatapi.com/" target="_blank" class="btn btn-secondary">Website</a>
+                    <a href="/cat_api" class="btn btn-csv">View CSV</a>
+                    <a href="https://thecatapi.com/" target="_blank" class="btn btn-outline">View Site</a>
+                    <a href="" class="btn btn-outline">GitHub</a>
                 </div>
             </div>
 

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Projects | Poonam Rajput</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learnmore.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        /* Back Button Styling */
+        .back-btn-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 10% 0 10%; /* Added top padding to push it below fixed header */
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #38bdf8;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.3s ease;
+            border: 1px solid #38bdf8;
+            padding: 8px 18px;
+            border-radius: 6px;
+            background: transparent;
+        }
+
+        .back-home-btn i {
+            font-size: 1.2rem;
+        }
+
+        .back-home-btn:hover {
+            background-color: #38bdf8;
+            color: #111827;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            transform: translateX(-3px);
+        }
+        
+        /* Adjust hero section top padding so it doesn't overlap the back button */
+        .hero {
+            padding-top: 30px !important;
+        }
+
+        /* ONLY CHANGED: Converting simple text links to styled buttons */
+        .cards .card .btn {
+            display: inline-block !important;
+            text-decoration: none !important;
+            color: #38bdf8 !important;
+            background: transparent !important;
+            border: 1px solid #38bdf8 !important;
+            padding: 8px 20px !important;
+            border-radius: 6px !important;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .cards .card .btn:hover {
+            background-color: #38bdf8 !important;
+            color: #111827 !important;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.4) !important;
+        }
+
+        /* Pehle card ke button ko thoda neeche shift karne ke liye */
+       /* First aur Second card ke button ko neeche shift karne ke liye */
+        .cards .card:nth-child(1) .btn,
+        .cards .card:nth-child(2) .btn {
+            margin-top: 45px !important;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Poonam Rajput
+</div>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/portfolio">Portfolio</a>
+    <a href="/Explore_Projects" class="active">Explore Projects</a>
+</nav>
+
+</header>
+
+<!-- Back Button Container pointing to Home (/) -->
+<div class="back-btn-container">
+    <a href="/" class="back-home-btn">
+        <i class='bx bx-left-arrow-alt'></i> Back to Home
+    </a>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="content">
+        <h1>Explore My Projects</h1>
+        <p>
+            Explore a curated showcase of my technical builds. From interactive <strong>Data Analytics Dashboards</strong> and intelligent <strong>AI-powered applications</strong> to robust <strong>Web Scraping engines</strong>, discover how I leverage Python, SQL, and Machine Learning to build scalable, real-world solutions.
+        </p>
+    </div>
+</section>
+
+<section class="projects">
+
+<h1 class="title">My Projects</h1>
+
+<div class="cards">
+
+    <!-- Card 1: Scraping -->
+    <div class="card">
+        <h2>🛒 Scraping</h2>
+        <p>
+            Python • BeautifulSoup • Requests
+        </p>
+        <a href="/scraping" class="btn">Open Project</a>
+    </div>
+    <div class="card">
+        <h2>🤖 Problem Scoping</h2>
+        <p>
+            AI Interviewer using Machine Learning
+        </p>
+        <a href="/problems" class="btn">Open Project</a>
+    </div>
+
+    <!-- Card 2: Data Analytics -->
+    <div class="card">
+        <h2>📊 Data Analytics Dashboard</h2>
+        <p>
+            Power BI • Data Visualization • SQL
+        </p>
+        <a href="/data_analytics" class="btn">Open Project</a>
+    </div>
+
+    
+
+</div>
+
+</section>
+
+<footer>
+    <p>© 2026 Poonam Rajput | All Rights Reserved</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Details | Poonam Rajput</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            list-style: none;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-color: #081b29;
+            --card-bg: #112e42;
+            --main-color: #00f2fe;     
+            --white-color: #fff;
+            --text-muted: #b0c4de;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--white-color);
+            min-height: 100vh;
+            padding-top: 140px; /* Space for fixed header */
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: rgba(8, 27, 41, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            color: var(--white-color);
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        .logo span {
+            color: var(--main-color);
+        }
+
+        /* --- HEADER NAVIGATION (headings shifted here) --- */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px; 
+        }
+
+        nav a {
+            font-size: 16px;
+            color: var(--white-color);
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--main-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 5% 80px;
+        }
+
+        /* --- NEW HOME BUTTON STYLE --- */
+        .home-btn-container {
+            margin-bottom: 25px;
+        }
+
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white-color);
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s ease;
+        }
+
+        .btn-home i {
+            font-size: 20px;
+        }
+
+        .btn-home:hover {
+            color: var(--main-color);
+            transform: translateX(-5px); /* Elegant slide on hover */
+        }
+
+        /* --- HERO BANNER SECTION (CLEAN & BOX-FREE) --- */
+        .internship-hero {
+            text-align: center;
+            margin-bottom: 120px; 
+        }
+
+        .internship-hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: var(--white-color);
+        }
+
+        .internship-hero h2 {
+            font-size: 24px;
+            color: var(--main-color);
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .internship-hero p {
+            font-size: 17px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .section-block {
+            margin-bottom: 100px; 
+            scroll-margin-top: 150px; /* Offset to prevent fixed header from overlapping headings */
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            gap: 12px;
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--main-color);
+            margin-bottom: 35px; 
+            text-align: center;
+        }
+
+        .section-block p {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: var(--white-color);
+            font-weight: 600;
+        }
+
+        /* --- WEEKLY TIMELINE CARDS --- */
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; 
+            margin-top: 35px;
+        }
+
+        .weekly-card {
+            background: var(--card-bg);
+            border-left: 5px solid var(--main-color);
+            border-radius: 4px 12px 12px 4px;
+            padding: 28px 32px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .weekly-card:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
+        }
+
+        .weekly-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--white-color);
+            margin-bottom: 12px;
+        }
+
+        .weekly-card p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            header { 
+                flex-direction: column; 
+                gap: 15px; 
+                padding: 20px 5%;
+            }
+            body { padding-top: 180px; }
+            nav { gap: 15px; }
+            .internship-hero h1 { font-size: 36px; }
+            .internship-hero h2 { font-size: 18px; }
+            .section-title { font-size: 28px; margin-bottom: 35px; }
+            .section-block { margin-bottom: 100px; }
+            .internship-hero { margin-bottom: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER WITH SHIFTED HEADING NAV BUTTONS -->
+<header>
+    <div class="logo">Poonam Rajput<span>.</span></div>
+    <nav>
+        <a href="#motivation">Motivation</a>
+        <a href="#about">About</a>
+        <a href="#timeline">Timeline</a>
+    </nav>
+</header>
+
+<div class="container">
+    
+    <!-- HOME NAVIGATION BUTTON -->
+    <div class="home-btn-container">
+        <a href="/my_journy.html" class="btn-home">
+            <i class='bx bx-home-alt-2'></i> Back to journy
+        </a>
+    </div>
+    
+    <!-- 1. HEADER HERO SECTION -->
+    <section class="internship-hero">
+        <h1>My Internship Journey</h1>
+        <h2>6 Weeks AI & ML Internship at CodroidHub Pvt. Ltd.</h2>
+        <p>A journey of learning, innovation, teamwork, and hands-on experience that transformed my classroom knowledge into practical skills.</p>
+    </section>
+
+    <!-- 2. MY MOTIVATION SECTION -->
+    <section class="section-block" id="motivation">
+        <h2 class="section-title">💡 My Motivation</h2>
+        <p>As an <span class="highlight">Artificial Intelligence & Machine Learning</span> student, I have always believed that learning extends beyond the classroom. While academic studies provided me with a strong theoretical foundation, I wanted to gain practical experience by working on real-world projects and understanding how technology is applied in the industry.</p>
+        <p>This motivation encouraged me to join the <span class="highlight">6 Weeks AI & ML Internship at CodroidHub Pvt. Ltd.</span>, where I had the opportunity to enhance my technical skills, explore modern development tools, and work on practical applications in a collaborative learning environment.</p>
+        <p>I am also sincerely grateful to <span class="highlight">JMIETI</span> for encouraging students to participate in industry-oriented internships. The continuous support and guidance from my college helped me connect academic knowledge with practical experience and strengthened my confidence as an aspiring AI & ML professional.</p>
+    </section>
+
+    <!-- 3. ABOUT THE INTERNSHIP SECTION -->
+    <section class="section-block" id="about">
+        <h2 class="section-title">🏢 About the Internship</h2>
+        <p>During my 6-week internship at <span class="highlight">CodroidHub Pvt. Ltd.</span>, I gained practical exposure to Artificial Intelligence, Machine Learning, Python Development, Web Scraping, Flask, APIs, and Data Analysis. The internship emphasized hands-on learning, allowing me to transform theoretical concepts into real-world applications through various projects and assignments.</p>
+    </section>
+
+    <!-- 4. WEEKLY BREAKDOWN TIMELINE -->
+    <section class="section-block" id="timeline">
+        <h2 class="section-title">📅 Weekly Breakdown</h2>
+        
+        <div class="timeline-container">
+            <!-- Week 1 -->
+            <div class="weekly-card">
+                <h3>Week 1 — Foundation & Introduction</h3>
+                <p>Started the internship by understanding the fundamentals of Artificial Intelligence, Machine Learning, Python programming, and the internship workflow. I also became familiar with GitHub and the overall development environment.</p>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="weekly-card">
+                <h3>Week 2 — Web Development with Flask</h3>
+                <p>Learned Flask framework, routing, templates, HTML, CSS, and created dynamic web applications while understanding how frontend and backend communicate.</p>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="weekly-card">
+                <h3>Week 3 — Web Scraping</h3>
+                <p>Worked on multiple web scraping projects using BeautifulSoup and Selenium. Extracted data from different websites and displayed it in Flask applications.</p>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="weekly-card">
+                <h3>Week 4 — APIs & Data Handling</h3>
+                <p>Integrated REST APIs, handled JSON responses, processed data using Python, and built interactive API-based applications.</p>
+            </div>
+
+            <!-- Week 5 -->
+            <div class="weekly-card">
+                <h3>Week 5 — Machine Learning & Data Analysis</h3>
+                <p>Explored Machine Learning concepts, data preprocessing, visualization, model building, and practical implementation using Python libraries.</p>
+            </div>
+
+            <!-- Week 6 -->
+            <div class="weekly-card">
+                <h3>Week 6 — Capstone Project & Portfolio</h3>
+                <p>Successfully completed the capstone project, improved my portfolio, integrated multiple projects, and presented the final work showcasing the skills gained throughout the internship.</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+</body>
+</html>

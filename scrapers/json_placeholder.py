@@ -2,7 +2,7 @@ import requests
 BASE_URL = "https://jsonplaceholder.typicode.com/posts"
 def fetch_posts():
     try:
-        response = requests.get(BASE_URL, timeout=10)
+        response = requests.get(BASE_URL, timeout=30)
 
         if response.status_code != 200:
             return {
@@ -15,7 +15,7 @@ def fetch_posts():
         posts = []
 
         # Fetch first 5 posts
-        for item in data[:5]:
+        for item in data[:30]:
             posts.append({
                 "id": item.get("id"),
                 "title": item.get("title"),

@@ -1,53 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Placeholder Posts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<meta charset="UTF-8">
+        body {
+            background-color: #24589c; /* Exact screenshot background blue tint */
+            color: #333333;
+            padding: 40px 10%;
+            min-height: 100vh;
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
 
-<title>JSON Placeholder Posts</title>
+        .error {
+            background-color: #d9534f;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
 
-<link rel="stylesheet"
-href="{{ url_for('static', filename='css/json_placeholder.css') }}">
+        /* Pure White curved wrapper for the data container */
+        .table-container {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow-x: auto;
+        }
 
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 5px;
+        }
+
+        /* Steel-Blue Table Header Styling */
+        th {
+            background-color: #245d93; 
+            color: #ffffff;
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 15px;
+            text-align: left;
+            letter-spacing: 0.3px;
+        }
+
+        /* Corner rounding for the table header array */
+        th:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        th:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        /* Data Rows configuration */
+        td {
+            padding: 18px 20px;
+            font-size: 14.5px;
+            color: #2c3e50;
+            border-bottom: 1px solid #f1f4f8;
+            vertical-align: middle;
+        }
+
+        /* Zebra cross row striping (Alternating row color effect) */
+        tr:nth-child(even) td {
+            background-color: #f8fafc; 
+        }
+
+        tr:hover td {
+            background-color: #edf2f7;
+            transition: background-color 0.2s ease;
+        }
+
+        /* Highlights for IDs */
+        .id-badge {
+            font-weight: 600;
+            color: #245d93;
+        }
+
+        .title-text {
+            font-weight: 500;
+            color: #1a202c;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>📄 JSON Placeholder Posts</h1>
+    <h1>📄 JSON Placeholder Posts</h1>
 
-{% if error %}
+    {% if error %}
+    <div class="error">
+        {{ error }}
+    </div>
+    {% endif %}
 
-<div class="error">
-
-{{ error }}
-
-</div>
-
-{% endif %}
-
-<div class="container">
-
-{% for post in posts %}
-
-<div class="card">
-
-<h2>{{ post.title }}</h2>
-
-<p><strong>Post ID:</strong> {{ post.id }}</p>
-
-<p><strong>User ID:</strong> {{ post.userId }}</p>
-
-<p>{{ post.body }}</p>
-
-</div>
-
-{% endfor %}
-
-</div>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 10%;">Post ID</th>
+                    <th style="width: 12%;">User ID</th>
+                    <th style="width: 33%;">Title</th>
+                    <th style="width: 45%;">Body / Content</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                <tr>
+                    <td><span class="id-badge">{{ post.id }}</span></td>
+                    <td>{{ post.userId }}</td>
+                    <td><span class="title-text">{{ post.title }}</span></td>
+                    <td style="color: #4a5568; line-height: 1.5;">{{ post.body }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 </body>
-
 </html>

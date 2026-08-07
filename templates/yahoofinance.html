@@ -1,77 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Market Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/yahoo.css') }}">
+
+    <title>Yahoo Finance Scraper</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/yahoofinance.css') }}">
+
 </head>
+
 <body>
+<div class="back-btn-container">
+    <a href="{{ url_for('dynamicscraping') }}" class="back-btn">← Back to Home</a>
+</div>
+<h1 class="title">
+    📈 Yahoo Finance - Most Active Stocks
+</h1>
 
-    <header class="dashboard-header">
-        <div class="logo-area">
-            <h2>MARKET ENGINE</h2>
-        </div>
-        <div class="status-indicator">
-            <span class="live-dot"></span> Live Analytics Dashboard
-        </div>
-    </header>
+<div class="container">
 
-    <main class="dashboard-container">
-        <h1 class="section-title">Trending Tickers & Stocks</h1>
+<table>
 
-        {% if error %}
-        <div class="error-banner">
-            <p><strong>Notice:</strong> Unable to sync live data right now. Displaying offline snapshot. ({{ error }})</p>
-        </div>
-        {% endif %}
+<thead>
 
-        <div class="table-wrapper">
-            <table class="finance-table">
-                <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Company Name</th>
-                        <th>Last Price</th>
-                        <th>Market Change</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% if stocks %}
-                        {% for stock in stocks %}
-                        <tr>
-                            <td class="stock-symbol">{{ stock.symbol }}</td>
-                            <td class="stock-name">{{ stock.name }}</td>
-                            <td class="stock-price">${{ stock.price }}</td>
-                            <td class="stock-change {% if '-' in stock.change %}negative{% else %}positive{% endif %}">
-                                {{ stock.change }}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    {% else %}
-                        <tr>
-                            <td class="stock-symbol">AAPL</td>
-                            <td class="stock-name">Apple Inc.</td>
-                            <td class="stock-price">$175.40</td>
-                            <td class="stock-change positive">+1.24%</td>
-                        </tr>
-                        <tr>
-                            <td class="stock-symbol">TSLA</td>
-                            <td class="stock-name">Tesla Inc.</td>
-                            <td class="stock-price">$180.20</td>
-                            <td class="stock-change negative">-2.15%</td>
-                        </tr>
-                        <tr>
-                            <td class="stock-symbol">NVDA</td>
-                            <td class="stock-name">NVIDIA Corporation</td>
-                            <td class="stock-price">$875.12</td>
-                            <td class="stock-change positive">+4.80%</td>
-                        </tr>
-                    {% endif %}
-                </tbody>
-            </table>
-        </div>
-    </main>
+<tr>
+    <th>Symbol</th>
+    <th>Company</th>
+    <th>Price</th>
+    <th>Change</th>
+    <th>Volume</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for stock in stocks %}
+
+<tr>
+
+<td>{{ stock.symbol }}</td>
+
+<td>{{ stock.company }}</td>
+
+<td>{{ stock.price }}</td>
+
+<td>{{ stock.change }}</td>
+
+<td>{{ stock.volume }}</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
 
 </body>
 </html>

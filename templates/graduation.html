@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graduation Details | Poonam Rajput</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        :root {
+            --bg-color: #081b29;
+            --card-bg: #112e42;
+            --main-color: #00f2fe;     
+            --white-color: #fff;
+            --text-muted: #b0c4de;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--white-color);
+            min-height: 100vh;
+            padding-top: 140px; 
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: rgba(8, 27, 41, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            color: var(--white-color);
+            font-weight: 700;
+            pointer-events: none;
+        }
+
+        .logo span {
+            color: var(--main-color);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 5% 80px;
+        }
+
+        .back-btn-container {
+            margin-bottom: 35px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--white-color);
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .back-btn i {
+            font-size: 22px;
+        }
+
+        .back-btn:hover {
+            color: var(--main-color);
+            transform: translateX(-5px); 
+        }
+
+        .grad-profile-card {
+            background: var(--card-bg);
+            border: 1.5px solid rgba(0, 242, 254, 0.15);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .grad-icon-box {
+            background: rgba(0, 242, 254, 0.1);
+            border: 2px solid var(--main-color);
+            border-radius: 12px;
+            padding: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .grad-icon-box i {
+            font-size: 60px;
+            color: var(--main-color);
+        }
+
+        .grad-info h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .grad-info h2 {
+            font-size: 18px;
+            color: var(--main-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .grad-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(8, 27, 41, 0.4);
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-item i {
+            color: var(--main-color);
+            font-size: 18px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 3px;
+            background: var(--main-color);
+            box-shadow: 0 0 8px var(--main-color);
+        }
+
+        .academic-tracker {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .semester-bar {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 25px 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .semester-bar:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+
+        .sem-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .sem-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sem-title i {
+            color: var(--main-color);
+            font-size: 22px;
+        }
+
+        .sem-title h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .sem-grade {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--main-color);
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.3);
+        }
+
+        .progress-track {
+            background: rgba(8, 27, 41, 0.6);
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #00c6ff, var(--main-color));
+            height: 100%;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+            transition: width 1s ease-in-out;
+        }
+
+        .semester-bar.pending {
+            border: 1px dashed rgba(0, 242, 254, 0.3);
+            background: rgba(17, 46, 66, 0.15);
+        }
+
+        .semester-bar.pending .sem-grade {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 15px;
+            font-style: italic;
+            text-shadow: none;
+        }
+
+        .semester-bar.pending .progress-track {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed rgba(176, 196, 222, 0.2);
+        }
+
+        .progress-fill.pulsing {
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.2), transparent);
+            animation: progress-pulse 2s infinite linear;
+            box-shadow: none;
+        }
+
+        @keyframes progress-pulse {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @media (max-width: 768px) {
+            body { padding-top: 160px; }
+            header { padding: 15px 5%; }
+            .grad-profile-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 25px;
+                gap: 20px;
+            }
+            .grad-icon-box { padding: 15px; }
+            .grad-icon-box i { font-size: 45px; }
+            .grad-info h1 { font-size: 24px; }
+            .semester-bar { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Poonam Rajput<span>.</span></div>
+</header>
+
+<div class="container">
+    
+    <!-- Updated Link pointing to /my_journy Flask Route -->
+    <div class="back-btn-container">
+        <a href="/my_journy.html" class="back-btn">
+            <i class='bx bx-left-arrow-alt'></i> Back to Journey
+        </a>
+    </div>
+
+    <!-- Banner Info -->
+    <div class="grad-profile-card">
+        <div class="grad-icon-box">
+            <i class='bx bx-graduation'></i>
+        </div>
+        <div class="grad-info">
+            <h1>Bachelor of Technology</h1>
+            <h2>Computer Science & Engineering</h2>
+            <div class="grad-details">
+                <div class="detail-item">
+                    <i class='bx bx-building'></i>
+                    <span>JMIETI, Radaur</span>
+                </div>
+                <div class="detail-item">
+                    <i class='bx bx-calendar'></i>
+                    <span>3rd Year (Active)</span>
+                </div>
+                <div class="detail-item">
+                    <i class='bx bx-medal'></i>
+                    <span>Current CGPA: 8.08 (Avg)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Academic Tracker -->
+    <h2 class="section-title">Academic Performance</h2>
+    
+    <div class="academic-tracker">
+        <!-- Sem 1 -->
+        <div class="semester-bar">
+            <div class="sem-meta">
+                <div class="sem-title">
+                    <i class='bx bx-circle-three-quarter'></i>
+                    <h3>1st Semester</h3>
+                </div>
+                <div class="sem-grade">SGPA: 7.80</div>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width: 78%;"></div>
+            </div>
+        </div>
+
+        <!-- Sem 2 -->
+        <div class="semester-bar">
+            <div class="sem-meta">
+                <div class="sem-title">
+                    <i class='bx bx-circle-three-quarter'></i>
+                    <h3>2nd Semester</h3>
+                </div>
+                <div class="sem-grade">SGPA: 8.24</div>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width: 82.4%;"></div>
+            </div>
+        </div>
+
+        <!-- Sem 3 -->
+        <div class="semester-bar">
+            <div class="sem-meta">
+                <div class="sem-title">
+                    <i class='bx bx-circle-three-quarter'></i>
+                    <h3>3rd Semester</h3>
+                </div>
+                <div class="sem-grade">SGPA: 8.20</div>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width: 82%;"></div>
+            </div>
+        </div>
+
+        <!-- Sem 4 (Awaiting Result) -->
+        <div class="semester-bar pending">
+            <div class="sem-meta">
+                <div class="sem-title">
+                    <i class='bx bx-time-five'></i>
+                    <h3>4th Semester</h3>
+                </div>
+                <div class="sem-grade">Result Awaiting</div>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill pulsing"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

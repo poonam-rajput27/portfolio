@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Performance Analysis - Portfolio Component</title>
+  <style>
+    /* Reset margins for edge-to-edge full screen layout */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #244263;
+    }
+
+    /* Full Screen Wrapper */
+    .portfolio-pdf-section {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation & Header Card */
+    .card-container {
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #244263 0%, #3a5874 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      z-index: 10;
+    }
+
+    .header-text {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      color: #ffffff;
+      margin: 0 0 4px 0;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .card-description {
+      color: #e2e8f0;
+      margin: 0;
+      font-size: 13px;
+      font-weight: 400;
+      opacity: 0.95;
+    }
+
+    /* Back Button Styling */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      white-space: nowrap;
+    }
+
+    .back-btn:hover {
+      background-color: rgba(255, 255, 255, 0.32);
+      transform: translateX(-2px);
+    }
+
+    /* Clickable Badge Tag for File Name */
+    .file-badge {
+      background-color: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 600;
+      font-size: 12px;
+      white-space: nowrap;
+      display: inline-block;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .file-badge:hover {
+      background-color: rgba(255, 255, 255, 0.32);
+    }
+
+    /* Fullscreen PDF Frame */
+    .pdf-wrapper {
+      width: 100%;
+      flex-grow: 1;
+      background: #f8fafc;
+    }
+
+    .pdf-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portfolio-pdf-section">
+    <!-- Header Bar with Back Button -->
+    <div class="card-container">
+      <!-- Back Button linked to Flask index page (or back in history) -->
+      <a href="{{ url_for('problem_scoping') }}" class="back-btn" onclick="if(history.length > 1) { history.back(); return false; }">
+        ← Back
+      </a>
+
+      <div class="header-text">
+        <h2 class="card-title">📊 Student Performance Analysis</h2>
+        <p class="card-description">
+          Analyzing academic records, trends, and data metrics from 
+          <a href="{{ url_for('static', filename='docs/studentperformance.pdf') }}" target="_blank" class="file-badge">
+            studentperformance.pdf
+          </a>.
+        </p>
+      </div>
+      
+      <!-- Invisible spacer to keep heading perfectly centered -->
+      <div style="width: 80px;" class="desktop-only"></div>
+    </div>
+
+    <!-- Direct Full Screen PDF Viewer -->
+    <div class="pdf-wrapper">
+      <iframe src="{{ url_for('static', filename='docs/studentperformance.pdf') }}#toolbar=0" type="application/pdf"></iframe>
+    </div>
+  </div>
+
+</body>
+</html>

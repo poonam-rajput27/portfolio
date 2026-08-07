@@ -1,74 +1,162 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Web Scraper Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dynamicscraping.css') }}">
+    <title>Dynamic Web Scraper Dashboard | Poonam Rajput</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #081b29; color: #ededed; padding: 4rem 10%; }
+
+        /* Navigation / Header Layout */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: transparent;
+            border: 1px solid #2a405c;
+            color: #ededed;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .back-btn i {
+            font-size: 1.1rem;
+        }
+
+        .back-btn:hover {
+            border-color: #00f2fe;
+            color: #00f2fe;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            transform: translateX(-3px);
+        }
+
+        .dashboard-header { margin-bottom: 3rem; }
+        .title { font-size: 2.5rem; color: #ffffff; margin-bottom: 0.5rem; }
+        .subtitle { color: #b2c4d4; font-size: 1.1rem; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: #162438;
+            border: 1px solid #2a405c;
+            border-radius: 15px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #00f2fe;
+            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.05);
+        }
+
+        .card-icon { font-size: 2.5rem; margin-bottom: 1.25rem; }
+        .card h2 { font-size: 1.5rem; color: #00f2fe; margin-bottom: 0.75rem; }
+        .card p { color: #b2c4d4; font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1; }
+
+        /* Button Styling - Smaller Size */
+        .buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+        .btn {
+            padding: 4px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.75rem;
+            transition: 0.3s;
+            border: 1px solid #00f2fe;
+            color: #00f2fe;
+            background: transparent;
+        }
+        .btn:hover { background-color: #00f2fe; color: #081b29; }
+
+        @media (max-width: 768px) {
+            body { padding: 2rem 5%; }
+            .title { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Back Button Component -->
+    <div class="top-nav">
+        <a href="#" onclick="history.back(); return false;" class="back-btn">
+            <i class='bx bx-arrow-back'></i> Back
+        </a>
+    </div>
 
     <header class="dashboard-header">
         <h1 class="title">🌐 Web Scraping Projects</h1>
         <p class="subtitle">A curated collection of active dynamic content engines, data parsers, and automation scripts.</p>
     </header>
+    
 
     <main class="container">
         <div class="cards-grid">
 
-            <div class="card card-quotes">
-                <div class="card-badge">JavaScript Dynamic</div>
+            <!-- Quotes Card -->
+            <div class="card">
                 <div class="card-icon">💬</div>
                 <h2>Quotes to Scrape</h2>
                 <p>Extract paginated JSON-rendered components containing author metadata, historical quotes, and tags.</p>
                 <div class="buttons">
-                    <a href="/quotes" class="btn btn-primary">View Details</a>
-                    <a href="https://quotes.toscrape.com/js/" target="_blank" class="btn btn-secondary">Website</a>
+                    <a href="/quotes" class="btn">View CSV</a>
+                    <a href="https://quotes.toscrape.com/js/" target="_blank" class="btn">View Site</a>
+                    <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./quaotes%20(1).ipynb" class="btn">GitHub</a>
                 </div>
             </div>
 
-            <div class="card card-imdb">
-                <div class="card-badge">Media & Ratings</div>
-                <div class="card-icon">🎬</div>
-                <h2>IMDb Engine</h2>
-                <p>Query entertainment endpoints to parse real-time chart rankings, trending content metrics, and user scores.</p>
-                <div class="buttons">
-                    <a href="/imdb" class="btn btn-primary">View Details</a>
-                    <a href="https://www.imdb.com/chart/top/" target="_blank" class="btn btn-secondary">Website</a>
-                </div>
-            </div>
-
-            <div class="card card-nike">
-                <div class="card-badge">E-Commerce</div>
-                <div class="card-icon">👟</div>
-                <h2>Nike Store Scraper</h2>
-                <p>Pipeline complex retail inventories, tracking dynamically rendered retail categories, sizes, and pricing nodes.</p>
-                <div class="buttons">
-                    <a href="/nike-scraping" class="btn btn-primary">View Details</a>
-                    <a href="https://www.nike.com/" target="_blank" class="btn btn-secondary">Website</a>
-                </div>
-            </div>
-
-            <div class="card card-yahoo">
-                <div class="card-badge">Market Data</div>
+            <!-- Yahoo Card -->
+            <div class="card">
                 <div class="card-icon">📊</div>
                 <h2>Yahoo Finance</h2>
                 <p>Ingest responsive financial tickers, tables, and stock transaction streams for analytical tracking.</p>
                 <div class="buttons">
-                    <a href="/yahoofinance" class="btn btn-primary">View Details</a>
-                    <a href="https://finance.yahoo.com/trending-tickers" target="_blank" class="btn btn-secondary">Website</a>
+                    <a href="/yahoofinance" class="btn">View CSV</a>
+                    <a href="https://finance.yahoo.com/trending-tickers" target="_blank" class="btn">View Site</a>
+                    <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./yahoo.ipynb" class="btn">GitHub</a>
                 </div>
             </div>
 
-            <div class="card card-indeed">
-                <div class="card-badge">Job Boards</div>
+            <!-- Crypto Card -->
+            <div class="card">
+                <div class="card-icon">🪙</div>
+                <h2>CoinGecko Crypto</h2>
+                <p>Fetches real-time cryptocurrency asset prices, market capitalization rates, and 24-hour market trend shifts dynamically.</p>
+                <div class="buttons">
+                    <a href="/crypto_scraping" class="btn">View CSV</a>
+                    <a href="https://www.coingecko.com/" target="_blank" class="btn">View Site</a>
+                    <a href="#" class="btn">GitHub</a>
+                </div>
+            </div>
+
+            <!-- Indeed Card -->
+            <div class="card">
                 <div class="card-icon">💼</div>
                 <h2>Indeed Parser</h2>
                 <p>Harvest structural professional job listings, corporate salary schemas, and metadata across regions.</p>
                 <div class="buttons">
-                    <a href="/indeed" class="btn btn-primary">View Details</a>
-                    <a href="https://www.indeed.com/" target="_blank" class="btn btn-secondary">Website</a>
+                    <a href="/indeed" class="btn">View CSV</a>
+                    <a href="https://www.indeed.com/" target="_blank" class="btn">View Site</a>
+                    <a href="https://github.com/poonam-rajput27/AI-Ml-Bootcamp/blob/main/webscraping./indeed.ipynb" class="btn">GitHub</a>
                 </div>
             </div>
 
